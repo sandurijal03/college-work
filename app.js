@@ -12,6 +12,7 @@ const { typeDefs } = require('./graphql/typeDefs');
 const app = express();
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
 const server = new ApolloServer({

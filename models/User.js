@@ -30,8 +30,6 @@ const userSchema = new Schema(
     },
     age: {
       type: String,
-      default: '20',
-      enum: ['20', '21', '22', '23', '24', '25'],
     },
     favourites: {
       type: ObjectId,

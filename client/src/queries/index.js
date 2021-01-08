@@ -16,3 +16,27 @@ export const GET_ALL_CARS = gql`
     }
   }
 `;
+
+// Users
+
+export const SIGNUP_USER = gql`
+  mutation(
+    $firstName: String!
+    $lastName: String!
+    $email: String!
+    $password: String!
+    $phone: String
+    $age: String!
+  ) {
+    signupUser(
+      firstName: $firstName
+      lastName: $lastName
+      email: $email
+      password: $password
+      phone: $phone
+      age: $age
+    ) {
+      token
+    }
+  }
+`;
