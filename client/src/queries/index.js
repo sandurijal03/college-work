@@ -19,6 +19,14 @@ export const GET_ALL_CARS = gql`
 
 // Users
 
+export const SIGNIN_USER = gql`
+  mutation($email: String!, $password: String!) {
+    signinUser(email: $email, password: $password) {
+      token
+    }
+  }
+`;
+
 export const SIGNUP_USER = gql`
   mutation(
     $firstName: String!

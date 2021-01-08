@@ -8,6 +8,7 @@ const Car = require('./models/Car');
 
 const { resolvers } = require('./graphql/resolvers');
 const { typeDefs } = require('./graphql/typeDefs');
+const isAuth = require('./middlewares/is-auth');
 
 const app = express();
 
@@ -15,15 +16,20 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
+app.use(isAuth);
+
 const server = new ApolloServer({
   resolvers,
   typeDefs,
   playground: {
     endpoint: '/graphql',
   },
-  context: {
-    User,
-    Car,
+  context: ({ req: { currentUser } }) => {
+    return {
+      currentUser,
+      User,
+      Car,
+    };
   },
 });
 

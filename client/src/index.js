@@ -39,8 +39,8 @@ const Root = () => (
   <Router>
     <Switch>
       <Route exact path='/' component={App} />
-      <Route to='/signup' component={Signup} />
-      <Route to='/signin' component={Signin} />
+      <Route exact to='/signin' component={Signin} />
+      <Route exact to='/signup' component={Signup} />
       <Redirect to='/' />
     </Switch>
   </Router>

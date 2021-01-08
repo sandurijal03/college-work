@@ -36,6 +36,7 @@ exports.typeDefs = `
 
   type Mutation {
     addCar(brand: String!, model: String!,category: String!, description: String!, ac: Boolean!, isAvailable: Boolean!,seat: Int!,price: Int!): Car!
+    signinUser(email: String!, password: String!): Token
     signupUser(firstName: String!, lastName: String!, email: String!, password: String!, age: String!, phone: String): Token
 
   }

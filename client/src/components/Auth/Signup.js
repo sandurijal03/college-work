@@ -62,6 +62,7 @@ const Signup = () => {
   const handleSubmit = async (e, signupUser) => {
     e.preventDefault();
     signupUser().then((data) => {
+      localStorage.setItem('token', data.signupUser.token);
       clearForm();
     });
   };

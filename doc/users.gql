@@ -17,3 +17,9 @@ mutation SIGN_UP_USER(
     token
   }
 }
+
+mutation SIGNIN_USER($email: String!, $password: String!) {
+  signinUser(email: $email, password: $password) {
+    token
+  }
+}
