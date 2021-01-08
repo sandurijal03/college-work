@@ -2,6 +2,7 @@ import './App.css';
 
 import { useQuery } from '@apollo/client';
 import { GET_ALL_CARS } from '../queries';
+import SingleCar from './Car/SingleCar';
 
 const App = () => {
   const { data, error, loading } = useQuery(GET_ALL_CARS);
@@ -9,13 +10,14 @@ const App = () => {
   if (loading) <h4>Loading</h4>;
   if (error) <h4>Error</h4>;
 
-  // return data.getAllCars.map((car) => (
-  //   <div key={car._id}>
-  //     <h1>{car.model}</h1>
-  //   </div>
-  // ));
   console.log(data);
-  return <h1>Cars</h1>;
+  return (
+    <ul>
+      {data.getAllCars.map((car) => (
+        <SingleCar {...car} key={car._id} />
+      ))}
+    </ul>
+  );
 };
 
 export default App;

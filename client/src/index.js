@@ -7,6 +7,7 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
+import './index.css';
 
 import {
   ApolloClient,
@@ -29,7 +30,7 @@ const authLink = new ApolloLink((operation, forward) => {
   const token = localStorage.getItem('token');
   operation.setContext({
     headers: {
-      authorization: token ? `${token}` : '',
+      authorization: token ? `Bearer ${token}` : '',
     },
   });
   return forward(operation);
