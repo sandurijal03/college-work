@@ -1,5 +1,6 @@
 import React from 'react';
 import { useMutation } from '@apollo/client';
+import { withRouter } from 'react-router-dom';
 
 import {
   Avatar,
@@ -21,7 +22,7 @@ import Copyright from './Copyright';
 import { useStyles } from './styles';
 import { SIGNIN_USER } from '../../queries';
 
-const Signin = () => {
+const Signin = ({ history, refetch }) => {
   const classes = useStyles();
 
   const { inputs, handleChange, clearForm } = useForm({
@@ -42,9 +43,11 @@ const Signin = () => {
 
   const handleSubmit = async (e, signinUser) => {
     e.preventDefault();
-    signinUser().then(({ data }) => {
+    signinUser().then(async ({ data }) => {
       localStorage.setItem('token', data.signinUser.token);
+      await refetch();
       clearForm();
+      history.push('/');
     });
   };
 
@@ -118,4 +121,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default withRouter(Signin);

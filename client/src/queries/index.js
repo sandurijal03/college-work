@@ -17,7 +17,24 @@ export const GET_ALL_CARS = gql`
   }
 `;
 
-// Users
+// Users Queries
+
+export const GET_CURRENT_USER = gql`
+  query {
+    getCurrentUser {
+      _id
+      firstName
+      lastName
+      email
+      password
+      role
+      age
+      phone
+    }
+  }
+`;
+
+// Users MUTATION
 
 export const SIGNIN_USER = gql`
   mutation($email: String!, $password: String!) {

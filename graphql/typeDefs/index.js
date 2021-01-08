@@ -26,6 +26,8 @@ exports.typeDefs = `
 
   type Query {
     getAllCars: [Car]
+
+    getCurrentUser: User
   }
 
   type Token {

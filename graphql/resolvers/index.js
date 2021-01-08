@@ -14,6 +14,16 @@ exports.resolvers = {
       const allCars = await Car.find();
       return allCars;
     },
+    getCurrentUser: async (parent, args, { currentUser, User }, info) => {
+      if (!currentUser) {
+        return null;
+      }
+      const user = await User.findOne({ email: currentUser.email }).populate({
+        path: 'favourites',
+        model: 'Car',
+      });
+      return user;
+    },
   },
   Mutation: {
     addCar: async (

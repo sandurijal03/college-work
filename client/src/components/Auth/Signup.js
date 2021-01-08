@@ -18,8 +18,9 @@ import useForm from '../../lib/useForm';
 import Error from '../../lib/Error';
 import { useStyles } from './styles';
 import Copyright from './Copyright';
+import { withRouter } from 'react-router-dom';
 
-const Signup = () => {
+const Signup = ({ history, refetch }) => {
   const classes = useStyles();
 
   const { inputs, handleChange, clearForm } = useForm({
@@ -59,11 +60,13 @@ const Signup = () => {
     return isInvalid;
   };
 
-  const handleSubmit = async (e, signupUser) => {
+  const handleSubmit = (e, signupUser) => {
     e.preventDefault();
-    signupUser().then((data) => {
+    signupUser().then(async ({ data }) => {
       localStorage.setItem('token', data.signupUser.token);
+      await refetch();
       clearForm();
+      history.push('/');
     });
   };
 
@@ -205,4 +208,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default withRouter(Signup);
