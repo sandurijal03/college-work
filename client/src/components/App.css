@@ -1,0 +1,49 @@
+.App {
+  text-align: center;
+}
+
+nav {
+  text-align: center;
+  margin-bottom: 1em;
+  padding-bottom: 0.2em;
+  padding-top: 2em;
+  background-color: #efefef;
+}
+
+nav ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+p,
+li {
+  font-size: 2rem;
+}
+
+ul {
+  list-style: none;
+}
+
+input,
+select,
+textarea {
+  padding: 0.4em 0.2em;
+  font-size: 1.2rem;
+}
+
+.active {
+  font-weight: bold;
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.delete-button {
+  color: red;
+  cursor: pointer;
+}

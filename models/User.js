@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const bcrypt = require('bcryptjs');
 
 const {
   Types: { ObjectId },
@@ -28,17 +29,34 @@ const userSchema = new Schema(
       required: true,
     },
     age: {
-      type: Number,
-      default: 20,
-      enum: [20, 21, 22, 23, 24, 25],
+      type: String,
+      default: '20',
+      enum: ['20', '21', '22', '23', '24', '25'],
     },
     favourites: {
       type: ObjectId,
       ref: 'Car',
     },
+    phone: {
+      type: String,
+    },
   },
   { timestamps: true },
 );
+
+userSchema.pre('save', function (next) {
+  if (!this.isModified('password')) {
+    next();
+  }
+  bcrypt.genSalt(12, (err, salt) => {
+    if (err) return next(err);
+    bcrypt.hash(this.password, salt, (err, hash) => {
+      if (err) return next(err);
+      this.password = hash;
+      next();
+    });
+  });
+});
 
 const User = model('User', userSchema);
 

@@ -7,7 +7,7 @@ const User = require('./models/User');
 const Car = require('./models/Car');
 
 const { resolvers } = require('./graphql/resolvers');
-const { typeDefs } = require('./graphql/schema');
+const { typeDefs } = require('./graphql/typeDefs');
 
 const app = express();
 

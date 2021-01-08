@@ -4,17 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js",
-    "server": "nodemon app.js"
+    "server": "nodemon app.js",
+    "client": "cd client && yarn start",
+    "dev": "concurrently --names \"server,client\" \"yarn run server --silent\" \"yarn run client --silent\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "apollo-server-express": "^2.19.1",
+    "bcryptjs": "^2.4.3",
+    "concurrently": "5.3.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "graphql": "^15.4.0",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.10"
   },
   "devDependencies": {
