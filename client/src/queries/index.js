@@ -1,5 +1,6 @@
 import { gql } from '@apollo/client';
 
+// car queries
 export const GET_ALL_CARS = gql`
   query {
     getAllCars {
@@ -13,6 +14,58 @@ export const GET_ALL_CARS = gql`
       isAvailable
       seat
       price
+    }
+  }
+`;
+
+export const GET_CAR = gql`
+  query($_id: ID!) {
+    getCar(_id: $_id) {
+      _id
+      brand
+      model
+      imageUrl
+      description
+      ac
+      isAvailable
+      price
+    }
+  }
+`;
+
+// car mutation
+export const ADD_CAR = gql`
+  mutation(
+    $brand: String!
+    $model: String!
+    $category: String!
+    $description: String!
+    $ac: Boolean!
+    $isAvailable: Boolean!
+    $seat: Int!
+    $price: Int!
+    $age: String!
+  ) {
+    addCar(
+      brand: $brand
+      model: $model
+      category: $category
+      description: $description
+      ac: $ac
+      isAvailable: $isAvailable
+      seat: $seat
+      price: $price
+      age: $age
+    ) {
+      brand
+      model
+      category
+      description
+      ac
+      isAvailable
+      seat
+      price
+      age
     }
   }
 `;

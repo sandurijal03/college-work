@@ -14,6 +14,10 @@ exports.resolvers = {
       const allCars = await Car.find();
       return allCars;
     },
+    getCar: async (parent, { _id }, { Car }, info) => {
+      const car = await Car.findOne({ _id });
+      return car;
+    },
     getCurrentUser: async (parent, args, { currentUser, User }, info) => {
       if (!currentUser) {
         return null;

@@ -10,6 +10,7 @@ exports.typeDefs = `
     isAvailable: Boolean!
     seat: Int!
     price: Int!
+    age: String!
   }
 
   type User {
@@ -26,6 +27,7 @@ exports.typeDefs = `
 
   type Query {
     getAllCars: [Car]
+    getCar(_id:ID!):Car
 
     getCurrentUser: User
   }
@@ -37,7 +39,7 @@ exports.typeDefs = `
 
 
   type Mutation {
-    addCar(brand: String!, model: String!,category: String!, description: String!, ac: Boolean!, isAvailable: Boolean!,seat: Int!,price: Int!): Car!
+    addCar(brand: String!, model: String!,category: String!, description: String!, ac: Boolean!, isAvailable: Boolean!,seat: Int!,price: Int!, age: String!): Car!
     signinUser(email: String!, password: String!): Token
     signupUser(firstName: String!, lastName: String!, email: String!, password: String!, age: String!, phone: String): Token
 

@@ -1,3 +1,16 @@
+query GET_CAR($_id: ID!) {
+  getCar(_id: $_id) {
+    _id
+    brand
+    model
+    imageUrl
+    description
+    ac
+    isAvailable
+    price
+  }
+}
+
 query GET_ALL_CAR {
   getAllCars {
     _id
@@ -22,6 +35,7 @@ mutation ADD_CAR(
   $isAvailable: Boolean!
   $seat: Int!
   $price: Int!
+  $age: String!
 ) {
   addCar(
     brand: $brand
@@ -32,6 +46,7 @@ mutation ADD_CAR(
     isAvailable: $isAvailable
     seat: $seat
     price: $price
+    age: $age
   ) {
     brand
     model
@@ -41,5 +56,6 @@ mutation ADD_CAR(
     isAvailable
     seat
     price
+    age
   }
 }

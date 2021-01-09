@@ -1,0 +1,32 @@
+.all {
+  background: rgb(156, 145, 145);
+  color: white;
+}
+
+.heading {
+  font-size: 50px;
+}
+
+.input {
+  width: 40%;
+  margin: 1%;
+  line-height: 4vh;
+}
+
+.select {
+  width: 20%;
+  margin: 1%;
+  line-height: 4vh;
+}
+
+.textarea {
+  width: 30%;
+  line-height: 7vh;
+  margin-top: 1%;
+}
+
+.button-primary {
+  width: 10%;
+  line-height: 3vh;
+  margin-top: 1%;
+}
