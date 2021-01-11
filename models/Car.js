@@ -37,6 +37,9 @@ const carSchema = new Schema(
       type: Number,
       required: true,
     },
+    age: {
+      type: Number,
+    },
   },
   {
     timestamps: true,

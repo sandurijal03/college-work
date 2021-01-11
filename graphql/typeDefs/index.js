@@ -6,11 +6,11 @@ exports.typeDefs = `
     imageUrl: String
     category: String!
     description: String!
-    ac: Boolean!
-    isAvailable: Boolean!
+    ac: String!
+    isAvailable: String!
     seat: Int!
     price: Int!
-    age: String!
+    age: Int!
   }
 
   type User {
@@ -39,7 +39,7 @@ exports.typeDefs = `
 
 
   type Mutation {
-    addCar(brand: String!, model: String!,category: String!, description: String!, ac: Boolean!, isAvailable: Boolean!,seat: Int!,price: Int!, age: String!): Car!
+    addCar(brand: String!, model: String!,category: String!, description: String!, ac: String!, isAvailable: String!,seat: Int!,price: Int!, age: Int!): Car!
     signinUser(email: String!, password: String!): Token
     signupUser(firstName: String!, lastName: String!, email: String!, password: String!, age: String!, phone: String): Token
 

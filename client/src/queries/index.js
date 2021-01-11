@@ -40,11 +40,11 @@ export const ADD_CAR = gql`
     $model: String!
     $category: String!
     $description: String!
-    $ac: Boolean!
-    $isAvailable: Boolean!
+    $ac: String!
+    $isAvailable: String!
     $seat: Int!
     $price: Int!
-    $age: String!
+    $age: Int!
   ) {
     addCar(
       brand: $brand

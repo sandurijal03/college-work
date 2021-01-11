@@ -50,7 +50,12 @@ const AddCar = () => {
     variables: inputs,
   });
 
-  const handleSubmit = (e, addCar) => {};
+  const handleSubmit = (e, addCar) => {
+    e.preventDefault();
+    addCar().then((data) => {
+      clearForm();
+    });
+  };
 
   return (
     <div className='all'>
@@ -78,7 +83,7 @@ const AddCar = () => {
         </div>
         <div>
           <input
-            type='text'
+            type='number'
             name='price'
             value={price}
             onChange={handleChange}
@@ -89,7 +94,7 @@ const AddCar = () => {
 
         <div>
           <input
-            type='text'
+            type='number'
             name='seat'
             value={seat}
             onChange={handleChange}
@@ -115,20 +120,14 @@ const AddCar = () => {
           </select>
         </div>
         <div>
-          <select
+          <input
+            type='number'
             name='age'
-            className='select'
-            onChange={handleChange}
             value={age}
-          >
-            <option>please select age</option>
-            <option value='20'>20</option>
-            <option value='21'>21</option>
-            <option value='22'>22</option>
-            <option value='23'>23</option>
-            <option value='24'>24</option>
-            <option value='25'>25</option>
-          </select>
+            onChange={handleChange}
+            placeholder='Users age'
+            className='input'
+          />
         </div>
         <div>
           <select
@@ -137,9 +136,9 @@ const AddCar = () => {
             onChange={handleChange}
             value={isAvailable}
           >
-            <option>please select ac availability</option>
-            <option value='yes'>yes</option>
-            <option value='no'>no</option>
+            <option>please select cars availability</option>
+            <option value={1}>yes</option>
+            <option value={0}>no</option>
           </select>
         </div>
         <div>
@@ -150,8 +149,8 @@ const AddCar = () => {
             value={ac}
           >
             <option>please select ac availability</option>
-            <option value='yes'>yes</option>
-            <option value='no'>no</option>
+            <option value={1}>yes</option>
+            <option value={0}>no</option>
           </select>
         </div>
         <div>

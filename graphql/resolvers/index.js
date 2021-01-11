@@ -32,11 +32,7 @@ exports.resolvers = {
   Mutation: {
     addCar: async (
       parent,
-      { brand, model, category, description, ac, isAvailable, seat, price },
-      { Car },
-      info,
-    ) => {
-      const newRecipe = await new Car({
+      {
         brand,
         model,
         category,
@@ -45,8 +41,27 @@ exports.resolvers = {
         isAvailable,
         seat,
         price,
-      }).save();
-      return newRecipe;
+        age,
+      },
+      { Car },
+      info,
+    ) => {
+      const newCar = await new Car({
+        brand,
+        model,
+        category,
+        description,
+        ac,
+        isAvailable,
+        seat,
+        price,
+        age,
+      });
+      newCar.isAvailable = Boolean(+newCar.isAvailable);
+      newCar.ac = Boolean(+newCar.ac);
+      // newCar.age = +newCar.age;
+      newCar.save();
+      return newCar;
     },
 
     signinUser: async (parent, { email, password }, { User }, info) => {
