@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 
 import useForm from '../../lib/useForm';
 import Error from '../../lib/Error';
 import './AddCarStyle.css';
-import { ADD_CAR } from '../../queries';
+import { ADD_CAR, GET_ALL_CARS } from '../../queries';
 import { useMutation } from '@apollo/client';
 
-const AddCar = () => {
+const AddCar = ({ history }) => {
   const { inputs, handleChange, clearForm } = useForm({
     brand: '',
     description: '',
@@ -46,14 +46,27 @@ const AddCar = () => {
     return isInvalid;
   };
 
+  const updateCache = (cache, { data: { addCar } }) => {
+    const { getAllCars } = cache.readQuery({ query: GET_ALL_CARS });
+
+    cache.writeQuery({
+      query: GET_ALL_CARS,
+      data: {
+        getAllCars: getAllCars.concat([addCar]),
+      },
+    });
+  };
+
   const [addCar, { loading, error }] = useMutation(ADD_CAR, {
     variables: inputs,
+    update: updateCache,
   });
 
   const handleSubmit = (e, addCar) => {
     e.preventDefault();
     addCar().then((data) => {
       clearForm();
+      history.push('/');
     });
   };
 

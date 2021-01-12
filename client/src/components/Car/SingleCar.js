@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const SingleCar = ({ car }) => {
+const SingleCar = ({ brand, model, _id }) => {
   return (
     <li>
-      <Link to={`cars/${car._id}`}>
-        <h4>{car.model}</h4>
+      <Link to={`cars/${_id}`}>
+        <h4>{model}</h4>
       </Link>
-      <p>{car.brand}</p>
+      <p>{brand}</p>
     </li>
   );
 };

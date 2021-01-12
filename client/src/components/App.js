@@ -10,15 +10,15 @@ const App = () => {
   if (loading) return <h4>Loading</h4>;
   if (error) return <h4>Error</h4>;
 
-  debugger;
-  console.log(data);
-  // return <h1>Hi</h1>;
-
-  return data.getAllCars.map((car) => (
-    <ul className='App'>
-      <SingleCar {...car} key={car._id} />
-    </ul>
-  ));
+  return data.getAllCars.map(({ brand, _id, model }) => {
+    const car = { brand, _id, model };
+    // console.log(car);
+    return (
+      <ul key={_id}>
+        <SingleCar {...car} />
+      </ul>
+    );
+  });
 };
 
 export default App;

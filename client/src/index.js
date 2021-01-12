@@ -59,8 +59,9 @@ const Root = ({ refetch, session }) => (
           path='/signup'
           render={() => <Signup refetch={refetch} />}
         />
-        <Route path='/car/add' component={AddCar} />
+        <Route path='/car/add' render={() => <AddCar session={session} />} />
         <Route path='/cars/:_id' component={CarPage} />
+
         <Route path='/profile' component={Profile} />
         <Redirect to='/' />
       </Switch>

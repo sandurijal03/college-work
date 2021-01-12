@@ -11,7 +11,7 @@ const createToken = (user, secret, expiresIn) => {
 exports.resolvers = {
   Query: {
     getAllCars: async (parent, args, { Car }, info) => {
-      const allCars = await Car.find();
+      const allCars = await Car.find().sort({ createdAt: 'desc' });
       return allCars;
     },
     getCar: async (parent, { _id }, { Car }, info) => {
