@@ -50,6 +50,4 @@ carSchema.index({
   '$**': 'text',
 });
 
-const Car = model('Car', carSchema);
-
-module.exports = Car;
+module.exports = model('Car', carSchema);

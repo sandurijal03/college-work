@@ -8,13 +8,11 @@ const CarPage = ({ match }) => {
   const { _id } = match.params;
 
   const { data, error, loading } = useQuery(GET_CAR, {
-    variables: _id,
+    variables: { _id },
   });
 
   if (loading) return <h2>Loading</h2>;
   if (error) return <h3>Error</h3>;
-
-  console.log(data);
 
   return (
     <div className='App'>

@@ -28,6 +28,7 @@ exports.typeDefs = `
   type Query {
     getAllCars: [Car]
     getCar(_id:ID!):Car
+    searchCar(searchTerm: String): [Car]
 
     getCurrentUser: User
   }

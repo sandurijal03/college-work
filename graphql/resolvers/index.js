@@ -15,8 +15,28 @@ exports.resolvers = {
       return allCars;
     },
     getCar: async (parent, { _id }, { Car }, info) => {
-      const car = await Car.findOne({ _id });
+      const car = await Car.findById({ _id });
       return car;
+    },
+    searchCar: async (parent, { searchTerm }, { Car }, info) => {
+      if (searchTerm) {
+        // search
+        const searchResults = await Car.find(
+          {
+            $text: { $search: searchTerm },
+          },
+          {
+            score: { $meta: 'textScore' },
+          },
+        ).sort({
+          score: { $meta: 'textScore' },
+        });
+        return searchResults;
+      } else {
+        const cars = await Car.find().sort();
+
+        return cars;
+      }
     },
     getCurrentUser: async (parent, args, { currentUser, User }, info) => {
       if (!currentUser) {

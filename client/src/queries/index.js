@@ -33,6 +33,15 @@ export const GET_CAR = gql`
   }
 `;
 
+export const SEARCH_CAR = gql`
+  query($searchTerm: String) {
+    searchCar(searchTerm: $searchTerm) {
+      _id
+      model
+    }
+  }
+`;
+
 // car mutation
 export const ADD_CAR = gql`
   mutation(

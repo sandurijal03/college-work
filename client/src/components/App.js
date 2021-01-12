@@ -12,7 +12,6 @@ const App = () => {
 
   return data.getAllCars.map(({ brand, _id, model }) => {
     const car = { brand, _id, model };
-    // console.log(car);
     return (
       <ul key={_id}>
         <SingleCar {...car} />
