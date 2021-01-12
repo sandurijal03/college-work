@@ -25,9 +25,11 @@ const NavbarAuth = ({ session }) => (
       <li>
         <NavLink to='/search'>Search</NavLink>
       </li>
-      <li>
-        <NavLink to='/car/add'>Add Car</NavLink>
-      </li>
+      {session && session.getCurrentUser.role === 'admin' && (
+        <li>
+          <NavLink to='/car/add'>Add Car</NavLink>
+        </li>
+      )}
       <li>
         <NavLink to='/profile'>Profile</NavLink>
       </li>

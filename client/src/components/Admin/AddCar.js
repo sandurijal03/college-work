@@ -6,6 +6,7 @@ import Error from '../../lib/Error';
 import './AddCarStyle.css';
 import { ADD_CAR, GET_ALL_CARS } from '../../queries';
 import { useMutation } from '@apollo/client';
+import withAuth from '../withAuth';
 
 const AddCar = ({ history }) => {
   const { inputs, handleChange, clearForm } = useForm({
@@ -191,4 +192,6 @@ const AddCar = ({ history }) => {
   );
 };
 
-export default withRouter(AddCar);
+export default withAuth(
+  (session) => session && session.getCurrentUser.role === 'admin',
+)(withRouter(AddCar));

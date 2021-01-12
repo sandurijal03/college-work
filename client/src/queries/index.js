@@ -92,6 +92,11 @@ export const GET_CURRENT_USER = gql`
       role
       age
       phone
+      favourites {
+        _id
+        brand
+        model
+      }
     }
   }
 `;
