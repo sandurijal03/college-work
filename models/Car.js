@@ -12,6 +12,7 @@ const carSchema = new Schema(
     },
     imageUrl: {
       type: String,
+      required: true,
     },
     category: {
       type: String,

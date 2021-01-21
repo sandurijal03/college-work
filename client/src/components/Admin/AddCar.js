@@ -15,6 +15,7 @@ const AddCar = ({ history }) => {
     category: '',
     model: '',
     isAvailable: '',
+    imageUrl: '',
     seat: '',
     age: '',
     price: '',
@@ -26,6 +27,7 @@ const AddCar = ({ history }) => {
     description,
     category,
     model,
+    imageUrl,
     isAvailable,
     seat,
     age,
@@ -40,6 +42,7 @@ const AddCar = ({ history }) => {
       !model ||
       !category ||
       !isAvailable ||
+      !imageUrl ||
       !seat ||
       !ac ||
       !age ||
@@ -95,6 +98,18 @@ const AddCar = ({ history }) => {
             className='input'
           />
         </div>
+
+        <div>
+          <input
+            type='text'
+            name='imageUrl'
+            value={imageUrl}
+            onChange={handleChange}
+            placeholder='image Url'
+            className='input'
+          />
+        </div>
+
         <div>
           <input
             type='number'

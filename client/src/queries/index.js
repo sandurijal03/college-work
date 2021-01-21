@@ -51,6 +51,7 @@ export const ADD_CAR = gql`
     $description: String!
     $ac: String!
     $isAvailable: String!
+    $imageUrl: String!
     $seat: Int!
     $price: Int!
     $age: Int!
@@ -61,6 +62,7 @@ export const ADD_CAR = gql`
       category: $category
       description: $description
       ac: $ac
+      imageUrl: $imageUrl
       isAvailable: $isAvailable
       seat: $seat
       price: $price

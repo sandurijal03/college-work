@@ -10,8 +10,8 @@ const App = () => {
   if (loading) return <h4>Loading</h4>;
   if (error) return <h4>Error</h4>;
 
-  return data.getAllCars.map(({ brand, _id, model }) => {
-    const car = { brand, _id, model };
+  return data.getAllCars.map(({ brand, _id, model, imageUrl, category }) => {
+    const car = { brand, _id, model, imageUrl, category };
     return (
       <ul key={_id}>
         <SingleCar {...car} />
