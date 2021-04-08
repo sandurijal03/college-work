@@ -1,24 +1,31 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Signout from './Auth/Signout';
+import { AiOutlineCar } from 'react-icons/ai';
+import './Navbar.css';
 
 const Navbar = ({ session }) => {
   return (
-    <nav>
-      {session && session.getCurrentUser ? (
-        <NavbarAuth session={session} />
-      ) : (
-        <NavbarUnAuth />
-      )}
+    <nav className='navbar'>
+      <div className='nav-container'>
+        <NavLink exact to='/' className='nav-logo'>
+          Easy Car <AiOutlineCar />
+        </NavLink>
+        {session && session.getCurrentUser ? (
+          <NavbarAuth session={session} />
+        ) : (
+          <NavbarUnAuth />
+        )}
+      </div>
     </nav>
   );
 };
 
 const NavbarAuth = ({ session }) => (
   <>
-    <ul>
-      <li>
-        <NavLink exact to='/'>
+    <ul className='nav-menu'>
+      <li className='nav-item'>
+        <NavLink exact to='/' className='nav-links'>
           Home
         </NavLink>
       </li>

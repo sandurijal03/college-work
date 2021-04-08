@@ -2,7 +2,7 @@
   text-align: center;
 }
 
-nav {
+/* nav {
   text-align: center;
   margin-bottom: 1em;
   padding-bottom: 0.2em;
@@ -14,16 +14,16 @@ nav ul {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-}
+} */
 
-p,
+/* p,
 li {
   font-size: 2rem;
 }
 
 ul {
   list-style: none;
-}
+} */
 
 input,
 select,
