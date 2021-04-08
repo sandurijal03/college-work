@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors');
 const { ApolloServer } = require('apollo-server-express');
 
 const User = require('./models/User');
@@ -14,7 +13,7 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors());
+// app.use(cors());
 
 app.use(isAuth);
 
@@ -33,7 +32,13 @@ const server = new ApolloServer({
   },
 });
 
-server.applyMiddleware({ app });
+server.applyMiddleware({
+  app,
+  cors: {
+    credentials: true,
+    origin: 'http://localhost:3000',
+  },
+});
 
 mongoose
   .connect('mongodb://localhost:27017/college-work', {
