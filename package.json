@@ -1,7 +1,7 @@
 {
   "name": "college-work",
   "version": "1.0.0",
-  "description": "",
+  "description": "final year college project",
   "main": "index.js",
   "scripts": {
     "server": "nodemon app.js",
@@ -12,13 +12,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "apollo-server-express": "^2.19.1",
+    "@asymmetrik/akin": "^0.2.4",
+    "apollo-server-express": "^2.17.0",
     "bcryptjs": "^2.4.3",
     "concurrently": "5.3.0",
     "express": "^4.17.1",
-    "graphql": "^15.4.0",
+    "graphql": "^15.3.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.11.10"
+    "mongoose": "^5.11.10",
+    "node": "^12.21.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"

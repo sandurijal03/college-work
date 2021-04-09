@@ -4,6 +4,7 @@ import { gql } from '@apollo/client';
 export const GET_ALL_CARS = gql`
   query {
     getAllCars {
+      objectId
       _id
       brand
       model

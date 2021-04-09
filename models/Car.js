@@ -2,6 +2,9 @@ const { Schema, model } = require('mongoose');
 
 const carSchema = new Schema(
   {
+    objectId: {
+      type: String,
+    },
     brand: {
       type: String,
       required: true,
@@ -12,7 +15,7 @@ const carSchema = new Schema(
     },
     imageUrl: {
       type: String,
-      required: true,
+      required: false,
     },
     category: {
       type: String,
@@ -20,7 +23,6 @@ const carSchema = new Schema(
     },
     description: {
       type: String,
-      required: true,
     },
     isAvailable: {
       type: Boolean,
@@ -40,6 +42,17 @@ const carSchema = new Schema(
     },
     age: {
       type: Number,
+    },
+    likes: {
+      type: Number,
+      default: 0,
+    },
+    username: {
+      type: String,
+    },
+    createdDate: {
+      type: Date,
+      default: Date.now(),
     },
   },
   {

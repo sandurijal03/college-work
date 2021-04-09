@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const { createWriteStream } = require('fs');
+const { join, parse } = require('path');
 
 const createToken = (user, secret, expiresIn) => {
   const { email, firstName, lastName, age, phone } = user;
@@ -17,6 +19,12 @@ exports.resolvers = {
     getCar: async (parent, { _id }, { Car }, info) => {
       const car = await Car.findById({ _id });
       return car;
+    },
+    getUserCar: async (parent, { username }, { Car }, info) => {
+      const userCars = await Car.find({ username }).sort({
+        createdDate: 'desc',
+      });
+      return userCars;
     },
     searchCar: async (parent, { searchTerm }, { Car }, info) => {
       if (searchTerm) {
@@ -63,6 +71,7 @@ exports.resolvers = {
         seat,
         price,
         age,
+        objectId,
       },
       { Car },
       info,
@@ -78,6 +87,7 @@ exports.resolvers = {
         seat,
         price,
         age,
+        objectId,
       });
       newCar.isAvailable = Boolean(+newCar.isAvailable);
       newCar.ac = Boolean(+newCar.ac);
@@ -85,7 +95,43 @@ exports.resolvers = {
       newCar.save();
       return newCar;
     },
-
+    likeCar: async (parent, { _id, username }, { Car, User }, info) => {
+      const car = await Car.findOneAndUpdate({ _id }, { $inc: { likes: 1 } });
+      const user = await User.findOneAndUpdate(
+        {
+          username,
+        },
+        {
+          $addToSet: {
+            favourites: _id,
+          },
+        },
+      );
+      return car;
+    },
+    unlikeCar: async (parent, { _id, username }, { Car, User }, info) => {
+      const car = await Car.findOneAndUpdate(
+        {
+          _id,
+        },
+        {
+          $inc: {
+            likes: -1,
+          },
+        },
+      );
+      const user = await User.findOneAndUpdate(
+        {
+          username,
+        },
+        { $pull: { favourites: _id } },
+      );
+      return car;
+    },
+    deleteUserCar: async (parent, { _id }, { Car }, info) => {
+      const car = await Car.findOneAndDelete({ _id });
+      return car;
+    },
     signinUser: async (parent, { email, password }, { User }, info) => {
       const user = await User.findOne({ email });
       if (!user) {
@@ -117,6 +163,18 @@ exports.resolvers = {
         age,
       }).save();
       return { token: createToken(newUser, process.env.SECRET, '1d') };
+    },
+    singleUpload: async (_, { file }) => {
+      let { filename, createReadStream } = await file;
+      let stream = createReadStream();
+      let { ext, name } = parse(filename);
+      let URL = 'http://localhost:3001';
+      name = name.replace(/([^a-z0-9 ]+)/gi, '-').replace(' ', '_');
+      let serverFile = join(__dirname, `../../uploads/${name}${ext}`);
+      let writeStream = await createWriteStream(serverFile);
+      await stream.pipe(writeStream);
+      serverFile = `${URL}${serverFile.split('uploads')[1]}`;
+      return serverFile;
     },
   },
 };

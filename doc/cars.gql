@@ -31,11 +31,13 @@ mutation ADD_CAR(
   $model: String!
   $category: String!
   $description: String!
-  $ac: Boolean!
-  $isAvailable: Boolean!
+  $ac: String!
+  $isAvailable: String!
   $seat: Int!
   $price: Int!
-  $age: String!
+  $age: Int!
+  $imageUrl: String
+  $objectId: String
 ) {
   addCar(
     brand: $brand
@@ -47,9 +49,13 @@ mutation ADD_CAR(
     seat: $seat
     price: $price
     age: $age
+    imageUrl: $imageUrl
+    ObjectId: $objectId
   ) {
+    _id
     brand
     model
+    imageUrl
     category
     description
     ac
@@ -57,5 +63,6 @@ mutation ADD_CAR(
     seat
     price
     age
+    objectId
   }
 }

@@ -32,7 +32,7 @@ const userSchema = new Schema(
       type: String,
     },
     favourites: {
-      type: ObjectId,
+      type: [ObjectId],
       ref: 'Car',
     },
     phone: {

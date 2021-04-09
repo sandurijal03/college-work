@@ -3,14 +3,15 @@ exports.typeDefs = `
     _id: ID!
     brand: String!
     model: String!
-    imageUrl: String!
+    imageUrl: String
     category: String!
-    description: String!
+    description: String
     ac: String!
     isAvailable: String!
     seat: Int!
     price: Int!
     age: Int!
+    objectId:String
   }
 
   type User {
@@ -29,6 +30,7 @@ exports.typeDefs = `
     getAllCars: [Car]
     getCar(_id:ID!):Car
     searchCar(searchTerm: String): [Car]
+    getUserCar(username: String!): [Car]
 
     getCurrentUser: User
   }
@@ -40,11 +42,18 @@ exports.typeDefs = `
 
 
   type Mutation {
-    addCar(brand: String!, model: String!,category: String!, description: String!, ac: String!, isAvailable: String!,seat: Int!,price: Int!, age: Int!, imageUrl:String!): Car!
+    singleUpload(file: Upload!): String!
+
+    addCar(brand: String!, model: String!,category: String!, description: String, ac: String!, isAvailable: String!,seat: Int!,price: Int!, age: Int!, imageUrl:String, objectId: String): Car!
+    
+    likeCar(_id:ID!, username:String) : Car
+    
+    unlikeCar(_id:  ID!, username:String): Car
+
+    deleteUserCar(_id:ID):Car
+
     signinUser(email: String!, password: String!): Token
+
     signupUser(firstName: String!, lastName: String!, email: String!, password: String!, age: String!, phone: String): Token
-
   }
-
-
 `;

@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const { ApolloServer } = require('apollo-server-express');
+const { join } = require('path');
 
 const User = require('./models/User');
 const Car = require('./models/Car');
@@ -13,7 +14,7 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
+app.use(express.static(join(__dirname, './uploads')));
 app.use(isAuth);
 
 const server = new ApolloServer({
