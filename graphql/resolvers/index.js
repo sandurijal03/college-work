@@ -56,6 +56,10 @@ exports.resolvers = {
       });
       return user;
     },
+    getArgumentCars: async (parent, { category }, { Car }, info) => {
+      let cars = await Car.find();
+      return cars.filter((car) => car.category === category);
+    },
   },
   Mutation: {
     addCar: async (

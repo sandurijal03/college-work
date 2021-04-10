@@ -19,6 +19,18 @@ export const GET_ALL_CARS = gql`
   }
 `;
 
+export const GET_ARGUMENT_CARS = gql`
+  query($category: String!) {
+    getArgumentCars(category: $category) {
+      _id
+      brand
+      model
+      imageUrl
+      category
+    }
+  }
+`;
+
 export const GET_CAR = gql`
   query($_id: ID!) {
     getCar(_id: $_id) {

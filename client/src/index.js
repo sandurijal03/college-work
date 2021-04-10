@@ -24,6 +24,7 @@ import Search from './components/Car/Search';
 import AddCar from './components/Admin/AddCar';
 import Profile from './components/Profile/Profile';
 import CarPage from './components/Car/CarPage';
+import GetArgumentsCar from './components/Car/GetArgumentsCar';
 
 const httpLink = new HttpLink({ uri: 'http://localhost:3001/graphql' });
 
@@ -61,8 +62,12 @@ const Root = ({ refetch, session }) => (
         />
         <Route path='/car/add' render={() => <AddCar session={session} />} />
         <Route exact path='/cars/:_id' component={CarPage} />
-
-        <Route path='/profile' render={() => <Profile session={session} />} />
+        <Route exact path='/:category/cars' component={GetArgumentsCar} />
+        <Route
+          exact
+          path='/profile'
+          render={() => <Profile session={session} />}
+        />
         <Redirect to='/' />
       </Switch>
     </>

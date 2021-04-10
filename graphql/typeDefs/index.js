@@ -31,7 +31,7 @@ exports.typeDefs = `
     getCar(_id:ID!):Car
     searchCar(searchTerm: String): [Car]
     getUserCar(username: String!): [Car]
-
+    getArgumentCars(category: String!): [Car]!
     getCurrentUser: User
   }
 
