@@ -9,6 +9,7 @@ const SingleCar = ({ objectId, brand, model, _id, imageUrl, category }) => {
       <div className='card-text'>
         <Link to={`cars/${_id}`}>
           <h4>{model}</h4>
+          <h4>{brand}</h4>
         </Link>
       </div>
     </li>

@@ -30,7 +30,7 @@ exports.typeDefs = `
     getAllCars: [Car]
     getCar(_id:ID!):Car
     searchCar(searchTerm: String): [Car]
-    getUserCar(username: String!): [Car]
+    getUserCar(email: String!): [Car]
     getArgumentCars(category: String!): [Car]!
     getCurrentUser: User
   }
@@ -46,9 +46,9 @@ exports.typeDefs = `
 
     addCar(brand: String!, model: String!,category: String!, description: String, ac: String!, isAvailable: String!,seat: Int!,price: Int!, age: Int!, imageUrl:String, objectId: String): Car!
     
-    likeCar(_id:ID!, username:String) : Car
+    likeCar(_id:ID!, email:String) : Car
     
-    unlikeCar(_id:  ID!, username:String): Car
+    unlikeCar(_id:  ID!, email:String): Car
 
     deleteUserCar(_id:ID):Car
 

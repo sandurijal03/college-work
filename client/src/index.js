@@ -61,8 +61,8 @@ const Root = ({ refetch, session }) => (
           render={() => <Signup refetch={refetch} />}
         />
         <Route path='/car/add' render={() => <AddCar session={session} />} />
-        <Route exact path='/cars/:_id' component={CarPage} />
         <Route exact path='/:category/cars' component={GetArgumentsCar} />
+        <Route exact path='/cars/:_id' component={CarPage} />
         <Route
           exact
           path='/profile'

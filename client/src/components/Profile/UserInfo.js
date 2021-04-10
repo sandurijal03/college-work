@@ -8,7 +8,6 @@ const UserInfo = ({ session }) => {
   return (
     <div>
       <h3>User Info</h3>
-
       <p>fullName: {fullName}</p>
       <p>Email: {email}</p>
       <ul>

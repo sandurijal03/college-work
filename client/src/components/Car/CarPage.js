@@ -14,9 +14,12 @@ const CarPage = ({ match }) => {
   if (loading) return <h2>Loading</h2>;
   if (error) return <h3>Error</h3>;
 
+  const { model, category } = data.getCar;
+
   return (
     <div className='App'>
-      <h2>{data.getCar.model}</h2>
+      <h2>{model}</h2>
+      <h3>{category}</h3>
     </div>
   );
 };

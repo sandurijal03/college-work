@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const { createWriteStream } = require('fs');
 const { join, parse } = require('path');
+const akin = require('@asymmetrik/akin');
 
 const createToken = (user, secret, expiresIn) => {
   const { email, firstName, lastName, age, phone } = user;
@@ -9,6 +10,9 @@ const createToken = (user, secret, expiresIn) => {
     expiresIn,
   });
 };
+
+akin.activity.log('1', '2', ['brand', 'model', 'category', 'ac', 'likes']);
+akin.run();
 
 exports.resolvers = {
   Query: {
@@ -20,8 +24,8 @@ exports.resolvers = {
       const car = await Car.findById({ _id });
       return car;
     },
-    getUserCar: async (parent, { username }, { Car }, info) => {
-      const userCars = await Car.find({ username }).sort({
+    getUserCar: async (parent, { email }, { Car }, info) => {
+      const userCars = await Car.find({ email }).sort({
         createdDate: 'desc',
       });
       return userCars;
@@ -99,11 +103,11 @@ exports.resolvers = {
       newCar.save();
       return newCar;
     },
-    likeCar: async (parent, { _id, username }, { Car, User }, info) => {
+    likeCar: async (parent, { _id, email }, { Car, User }, info) => {
       const car = await Car.findOneAndUpdate({ _id }, { $inc: { likes: 1 } });
       const user = await User.findOneAndUpdate(
         {
-          username,
+          email,
         },
         {
           $addToSet: {
@@ -113,7 +117,7 @@ exports.resolvers = {
       );
       return car;
     },
-    unlikeCar: async (parent, { _id, username }, { Car, User }, info) => {
+    unlikeCar: async (parent, { _id, email }, { Car, User }, info) => {
       const car = await Car.findOneAndUpdate(
         {
           _id,
@@ -133,7 +137,7 @@ exports.resolvers = {
       return car;
     },
     deleteUserCar: async (parent, { _id }, { Car }, info) => {
-      const car = await Car.findOneAndDelete({ _id });
+      const car = await Car.findOneAndRemove({ _id });
       return car;
     },
     signinUser: async (parent, { email, password }, { User }, info) => {
