@@ -1,0 +1,14 @@
+.skills-icon {
+  font-size: 3rem;
+  color: #e3b505;
+  background: rgb(216, 214, 214);
+}
+.skills-icon:hover {
+  color: #e3b505;
+}
+.skills-underline {
+  width: 4rem;
+  height: 0.3rem;
+  background: #40acf1;
+  margin: 1rem auto;
+}

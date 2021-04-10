@@ -24,45 +24,56 @@ const Navbar = ({ session }) => {
 const NavbarAuth = ({ session }) => (
   <>
     <ul className='nav-menu'>
-      <li className='nav-item'>
+      <li>
         <NavLink exact to='/' className='nav-links'>
           Home
         </NavLink>
       </li>
       <li>
-        <NavLink to='/search'>Search</NavLink>
+        <NavLink to='/search' className='nav-links'>
+          Search
+        </NavLink>
       </li>
       {session && session.getCurrentUser.role === 'admin' && (
         <li>
-          <NavLink to='/car/add'>Add Car</NavLink>
+          <NavLink to='/car/add' className='nav-links'>
+            Add Car
+          </NavLink>
         </li>
       )}
       <li>
-        <NavLink to='/profile'>Profile</NavLink>
+        <NavLink to='/profile' className='nav-links'>
+          Profile
+        </NavLink>
       </li>
       <li>
         <Signout />
       </li>
     </ul>
-    <h2>Welcome {session.getCurrentUser.firstName}</h2>
   </>
 );
 
 const NavbarUnAuth = () => (
-  <ul>
+  <ul className='nav-menu'>
     <li>
-      <NavLink exact to='/'>
+      <NavLink exact to='/' className='nav-links'>
         Home
       </NavLink>
     </li>
     <li>
-      <NavLink to='/search'>Search</NavLink>
+      <NavLink to='/search' className='nav-links'>
+        Search
+      </NavLink>
     </li>
     <li>
-      <NavLink to='/signin'>Signin</NavLink>
+      <NavLink to='/signin' className='nav-links'>
+        Signin
+      </NavLink>
     </li>
     <li>
-      <NavLink to='/signup'>Signup</NavLink>
+      <NavLink to='/signup' className='nav-links'>
+        Signup
+      </NavLink>
     </li>
   </ul>
 );

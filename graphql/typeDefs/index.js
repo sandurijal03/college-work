@@ -24,6 +24,7 @@ exports.typeDefs = `
     age: Int!
     phone:String
     favourites: [Car]
+    createdAt: String
   }
 
   type Query {

@@ -1,5 +1,5 @@
 .navbar {
-  background-color: #1f5156;
+  background-color: #000;
   height: 80px;
   display: flex;
   justify-content: space-between;
@@ -42,9 +42,4 @@
   padding: 0.5rem 1rem;
   height: 100%;
   border-bottom: 3px solid transparent;
-}
-
-.nav-item {
-  line-height: 40px;
-  margin-right: 1rem;
 }

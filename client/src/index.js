@@ -7,8 +7,7 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
-import './index.css';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   ApolloClient,
   ApolloProvider,
@@ -16,6 +15,7 @@ import {
   ApolloLink,
   HttpLink,
 } from '@apollo/client';
+
 import Signup from './components/Auth/Signup';
 import Signin from './components/Auth/Signin';
 import withSession from './components/withSessions';
@@ -25,6 +25,7 @@ import AddCar from './components/Admin/AddCar';
 import Profile from './components/Profile/Profile';
 import CarPage from './components/Car/CarPage';
 import GetArgumentsCar from './components/Car/GetArgumentsCar';
+import './index.css';
 
 const httpLink = new HttpLink({ uri: 'http://localhost:3001/graphql' });
 

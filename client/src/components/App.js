@@ -4,6 +4,8 @@ import { useQuery } from '@apollo/client';
 import { GET_ALL_CARS } from '../queries';
 import SingleCar from './Car/SingleCar';
 import Cars from './Car/Cars';
+import HeroSection from './HeroSection';
+import Feature from './Feature';
 
 const App = () => {
   // const { data, error, loading } = useQuery(GET_ALL_CARS);
@@ -21,7 +23,13 @@ const App = () => {
   //     );
   //   },
   // );
-  return <Cars />;
+  return (
+    <>
+      <HeroSection />
+      <Cars />
+      <Feature />
+    </>
+  );
 };
 
 export default App;

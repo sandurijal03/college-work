@@ -2,7 +2,6 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const { createWriteStream } = require('fs');
 const { join, parse } = require('path');
-const akin = require('@asymmetrik/akin');
 
 const createToken = (user, secret, expiresIn) => {
   const { email, firstName, lastName, age, phone } = user;
@@ -10,9 +9,6 @@ const createToken = (user, secret, expiresIn) => {
     expiresIn,
   });
 };
-
-akin.activity.log('1', '2', ['brand', 'model', 'category', 'ac', 'likes']);
-akin.run();
 
 exports.resolvers = {
   Query: {
