@@ -25,8 +25,8 @@ const NavbarAuth = ({ session }) => (
   <>
     <ul className='nav-menu'>
       <li>
-        <NavLink exact to='/' className='nav-links'>
-          Home
+        <NavLink exact to='/allcars' className='nav-links'>
+          All Cars
         </NavLink>
       </li>
       <li>
@@ -56,8 +56,8 @@ const NavbarAuth = ({ session }) => (
 const NavbarUnAuth = () => (
   <ul className='nav-menu'>
     <li>
-      <NavLink exact to='/' className='nav-links'>
-        Home
+      <NavLink exact to='/allcars' className='nav-links'>
+        All Cars
       </NavLink>
     </li>
     <li>

@@ -11,7 +11,18 @@ const Signout = ({ history }) => {
   return (
     <ApolloConsumer>
       {(client) => {
-        return <button onClick={() => handleSignout(client)}>Signout</button>;
+        return (
+          <button
+            onClick={() => handleSignout(client)}
+            style={{
+              background: '#fff',
+              borderRadius: '10px',
+              padding: '2px 1px',
+            }}
+          >
+            Signout
+          </button>
+        );
       }}
     </ApolloConsumer>
   );
