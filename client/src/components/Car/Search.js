@@ -10,10 +10,6 @@ const Search = () => {
     setSearchResults(searchCar);
   };
 
-    console.log(searchResults)
-
-
-
   return (
     <ApolloConsumer>
       {(client) => (

@@ -1,9 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './AllCars.css';
 
 const SingleCar = ({ objectId, brand, model, _id, imageUrl, category }) => {
   return (
-    <li style={{ background: `url(${imageUrl}) center cover no-repeat` }}>
+    <li
+      style={{ background: `url(${imageUrl}) center cover no-repeat` }}
+      className='car-list'
+    >
       <img src={`${objectId}.jpg`} alt='car' />
       <span className={category}>{category}</span>
       <div className='card-text'>
