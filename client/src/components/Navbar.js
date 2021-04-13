@@ -70,11 +70,6 @@ const NavbarUnAuth = () => (
         Signin
       </NavLink>
     </li>
-    <li>
-      <NavLink to='/signup' className='nav-links'>
-        Signup
-      </NavLink>
-    </li>
   </ul>
 );
 

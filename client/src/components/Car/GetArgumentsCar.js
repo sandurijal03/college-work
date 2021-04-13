@@ -1,8 +1,9 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_ARGUMENT_CARS } from '../../queries';
+import { withRouter } from 'react-router-dom';
 
-const GetArgumentsCar = ({ match }) => {
+const GetArgumentsCar = ({ match, history }) => {
   const { category } = match.params;
   const { loading, data, error } = useQuery(GET_ARGUMENT_CARS, {
     variables: { category },
@@ -12,7 +13,7 @@ const GetArgumentsCar = ({ match }) => {
   if (error) return <h4>Error</h4>;
 
   return data.getArgumentCars.map(
-    ({ objectId, id, model, brand, category }) => (
+    ({ objectId, _id, model, brand, category }) => (
       <section id='store' className='store py-5' style={{ background: 'grey' }}>
         <div className='container'>
           <div className='row store-items'>
@@ -25,6 +26,7 @@ const GetArgumentsCar = ({ match }) => {
                     overflow: 'hidden',
                     cursor: 'pointer',
                   }}
+                  onClick={() => history.push(`/cars/${_id}`)}
                 >
                   <img
                     src={`../../assets/${objectId}.jpg`}
@@ -42,4 +44,4 @@ const GetArgumentsCar = ({ match }) => {
   );
 };
 
-export default GetArgumentsCar;
+export default withRouter(GetArgumentsCar);

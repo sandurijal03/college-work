@@ -1,6 +1,6 @@
 import React from 'react';
 import { useMutation } from '@apollo/client';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 import {
   Avatar,
@@ -9,7 +9,6 @@ import {
   TextField,
   FormControlLabel,
   Checkbox,
-  Link,
   Grid,
   Box,
   Typography,

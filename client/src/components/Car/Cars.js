@@ -2,12 +2,12 @@ import React from 'react';
 import CarItem from './CarItem';
 import './Cars.css';
 
-import SedanCar from '../../assets/T3bdc4539U.png';
-import convertibleCar from '../../assets/tNHeWkCVBr.jpg';
-import hatchbagCar from '../../assets/owKsJpxQMy.jpg';
-import coupeCar from '../../assets/bIBwtlieZU.jpg';
-import suvCar from '../../assets/4fOA1olTnP.jpg';
-import pickUp from '../../assets/eJfSKUCGFS.jpg';
+import SedanCar from '../assets/T3bdc4539U.png';
+import convertibleCar from '../assets/tNHeWkCVBr.jpg';
+import hatchbagCar from '../assets/owKsJpxQMy.jpg';
+import coupeCar from '../assets/bIBwtlieZU.jpg';
+import suvCar from '../assets/4fOA1olTnP.jpg';
+import pickUp from '../assets/eJfSKUCGFS.jpg';
 
 const Cars = (props) => {
   return (

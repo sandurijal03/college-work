@@ -1,13 +1,11 @@
 import React from 'react';
 import { useMutation } from '@apollo/client';
-import { SIGNUP_USER } from '../../queries';
-
+import { Link, withRouter } from 'react-router-dom';
 import {
   Avatar,
   Button,
   CssBaseline,
   TextField,
-  Link,
   Grid,
   Typography,
   Container,
@@ -18,7 +16,7 @@ import useForm from '../../lib/useForm';
 import Error from '../../lib/Error';
 import { useStyles } from './styles';
 import Copyright from './Copyright';
-import { withRouter } from 'react-router-dom';
+import { SIGNUP_USER } from '../../queries';
 
 const Signup = ({ history, refetch }) => {
   const classes = useStyles();
