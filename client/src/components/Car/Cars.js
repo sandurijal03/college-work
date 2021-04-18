@@ -1,6 +1,8 @@
 import React from 'react';
 import CarItem from './CarItem';
-import './Cars.css';
+import styled from 'styled-components';
+
+// import './Cars.css';
 
 import SedanCar from '../assets/T3bdc4539U.png';
 import convertibleCar from '../assets/tNHeWkCVBr.jpg';
@@ -11,7 +13,7 @@ import pickUp from '../assets/eJfSKUCGFS.jpg';
 
 const Cars = (props) => {
   return (
-    <div className='cards'>
+    <CarsStyled>
       <h1>Check out Recent Imported Models</h1>
       <div className='cards__container'>
         <div className='cards__wrapper'>
@@ -57,8 +59,33 @@ const Cars = (props) => {
           </ul>
         </div>
       </div>
-    </div>
+    </CarsStyled>
   );
 };
+
+const CarsStyled = styled.div`
+  padding: 4rem;
+  background: #fff;
+  h1 {
+    text-align: 'center';
+  }
+  .cards__container {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    max-width: 1120px;
+    width: 90%;
+    margin: 0 auto;
+    .cards__wrapper {
+      position: relative;
+      margin: 50px 0 45px;
+      .cards__items {
+        margin-bottom: 24px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  }
+`;
 
 export default Cars;

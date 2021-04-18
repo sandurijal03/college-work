@@ -2,11 +2,13 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_ALL_CARS } from '../../queries';
 // import SingleCar from './SingleCar';
-import './AllCars.css';
+import './AllCars.scss';
+
+import { withRouter } from 'react-router-dom';
 
 import pickUp from '../assets/eJfSKUCGFS.jpg';
 
-const AllCars = () => {
+const AllCars = ({ history }) => {
   const { data, error, loading } = useQuery(GET_ALL_CARS);
 
   if (loading) return <h4>Loading</h4>;
@@ -31,8 +33,11 @@ const AllCars = () => {
         // </ul>
 
         <div className='card' key={_id}>
-          <div className='card-img'>
-            <img src={pickUp} alt='' />
+          <div
+            className='card-img'
+            onClick={() => history.push(`/cars/${_id}`)}
+          >
+            <img src={pickUp} alt='' style={{ width: '200px' }} />
           </div>
           <div className='card-header'>
             <h2>{model}</h2>
@@ -52,4 +57,4 @@ const AllCars = () => {
   );
 };
 
-export default AllCars;
+export default withRouter(AllCars);
