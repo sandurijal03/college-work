@@ -1,15 +1,16 @@
 import React from 'react';
-import './Feature.css';
+// import './Feature.css';
 import { Link } from 'react-router-dom';
 import { FaCar, FaWallet, FaComments, FaPeopleCarry } from 'react-icons/fa';
+import styled from 'styled-components';
 
 function Feature() {
   return (
-    <section className='skill py-5' id='skills'>
+    <FeatureStyled id='skills'>
       <div className='container'>
         <div className='row mb-5'>
           <div className='col d-flex flex-wrap text-uppercase justify-content-center'>
-            <h1 className='font-weight-bold aligh-self-center mx-1'>
+            <h1 className='font-weight-bold align-self-center mx-1'>
               Why choose
             </h1>
             <h1 className='section-title--special mx-1'>Easy Cars</h1>
@@ -68,8 +69,26 @@ function Feature() {
           </div>
         </div>
       </div>
-    </section>
+    </FeatureStyled>
   );
 }
+
+const FeatureStyled = styled.section`
+  padding: 5px 0;
+  .skills-icon {
+    font-size: 3rem;
+    color: #e3b505;
+    background: rgb(216, 214, 214);
+    &:hover {
+      color: #e3b505;
+    }
+  }
+  .skills-underline {
+    width: 4rem;
+    height: 0.3rem;
+    background: #40acf1;
+    margin: 1rem auto;
+  }
+`;
 
 export default Feature;
