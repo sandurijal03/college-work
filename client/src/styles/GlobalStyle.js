@@ -4,6 +4,9 @@ const GlobalStyled = createGlobalStyle`
 
 :root {
   --primary: #fff;
+  --scrollbar-bg-color: #383838;
+  --scrollbar-thumb-color: #6b6b6b;
+  --scrollbar-track-color: #383838; 
 }
 
   * {
@@ -11,11 +14,32 @@ const GlobalStyled = createGlobalStyle`
     padding: 0;
     box-sizing:border-box;
     font-family:'PT Sans',sans-serif;
+    list-style: none;
+    text-decoration:none;
   }
   
 .App {
   text-align: center;
 }
+
+  body::-webkit-scrollbar{
+    width: 9px;
+    background-color: var(--scrollbar-bg-color);
+  }
+
+  body::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+    background-color: var(--scrollbar-thumb-color);
+  }
+
+
+  body::-webkit-scrollbar-track{
+    border-radius: 10px;
+    background-color: var(--scrollbar-track-color);
+  }
+
+
+
 
 .home,
 .services,
@@ -84,6 +108,11 @@ textarea {
   outline: none;
   border: none;
   cursor: pointer;
+}
+
+
+a  {
+  outline:none;
 }
 
 .btn--primary {
