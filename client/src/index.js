@@ -25,8 +25,8 @@ import AddCar from './components/Admin/AddCar';
 import Profile from './components/Profile/Profile';
 import CarPage from './components/Car/CarPage';
 import GetArgumentsCar from './components/Car/GetArgumentsCar';
-import './index.css';
 import AllCars from './components/Car/AllCars';
+import GlobalStyled from './styles/GlobalStyle';
 
 const httpLink = new HttpLink({ uri: 'http://localhost:3001/graphql' });
 
@@ -46,35 +46,38 @@ const client = new ApolloClient({
 });
 
 const Root = ({ refetch, session }) => (
-  <Router>
-    <>
-      <Navbar session={session} />
-      <Switch>
-        <Route exact path='/' component={App} />
-        <Route exact path='/search' component={Search} />
-        <Route exact path='/allcars' component={AllCars} />
-        <Route
-          exact
-          path='/signin'
-          render={() => <Signin refetch={refetch} />}
-        />
-        <Route
-          exact
-          path='/signup'
-          render={() => <Signup refetch={refetch} />}
-        />
-        <Route path='/car/add' render={() => <AddCar session={session} />} />
-        <Route exact path='/cars/:_id' component={CarPage} />
-        <Route exact path='/:category/cars' component={GetArgumentsCar} />
-        <Route
-          exact
-          path='/profile'
-          render={() => <Profile session={session} />}
-        />
-        <Redirect to='/' />
-      </Switch>
-    </>
-  </Router>
+  <>
+    <GlobalStyled />
+    <Router>
+      <>
+        <Navbar session={session} />
+        <Switch>
+          <Route exact path='/' component={App} />
+          <Route exact path='/search' component={Search} />
+          <Route exact path='/allcars' component={AllCars} />
+          <Route
+            exact
+            path='/signin'
+            render={() => <Signin refetch={refetch} />}
+          />
+          <Route
+            exact
+            path='/signup'
+            render={() => <Signup refetch={refetch} />}
+          />
+          <Route path='/car/add' render={() => <AddCar session={session} />} />
+          <Route exact path='/cars/:_id' component={CarPage} />
+          <Route exact path='/:category/cars' component={GetArgumentsCar} />
+          <Route
+            exact
+            path='/profile'
+            render={() => <Profile session={session} />}
+          />
+          <Redirect to='/' />
+        </Switch>
+      </>
+    </Router>
+  </>
 );
 
 const RootWithSesion = withSession(Root);
