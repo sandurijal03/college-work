@@ -1,27 +1,19 @@
 import React from 'react';
 import { FaPlayCircle } from 'react-icons/fa';
 import styled from 'styled-components';
+import homeImg from './assets/img-home.jpg';
 
-// import './App.css';
 import { Button } from './Button';
-// import './HeroSection.css';
 
 const HeroSection = () => {
   return (
-    <HeroSectionStyled style={{ background: 'url(./assets/img-home.jpg)' }}>
+    <HeroSectionStyled>
       <video src='videos/video-1.mp4' autoPlay loop muted />
       <h1 className='heading'>Adventure awaits</h1>
       <p className='desc'>What are you waiting for</p>
       <div className='hero-btns'>
-        {/* <Button
-          className='btns'
-          buttonStyle='btn-outline'
-          buttonSize='btn--large'
-        >
-          GET STARTED
-        </Button> */}
         <Button
-          className='btns'
+          className='btn'
           buttonStyle='btn-primary'
           buttonSize='btn--large'
         >
@@ -33,7 +25,7 @@ const HeroSection = () => {
 };
 
 const HeroSectionStyled = styled.div`
-  background: url('/assets/img-home.jpg') center center/cover no-repeat;
+  background: url(${homeImg}) center center/cover no-repeat;
   height: 92vh;
   width: 100%;
   display: flex;
@@ -46,6 +38,15 @@ const HeroSectionStyled = styled.div`
     color: #fff;
     font-size: 100px;
     margin-top: -100px;
+    @media screen and (max-width: 960px) {
+      font-size: 70px;
+      margin-top: -150px;
+    }
+
+    @media screen and (max-width: 960px) {
+      font-size: 50px;
+      margin-top: -100px;
+    }
   }
   .desc {
     margin-top: 8px;
@@ -53,12 +54,18 @@ const HeroSectionStyled = styled.div`
     font-size: 32px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
       'Lucida Sans', Arial, sans-serif;
+    @media screen and (max-width: 960px) {
+      font-size: 30px;
+    }
   }
   .hero-btns {
     margin-top: 32px;
   }
   .btn {
     margin: 6px;
+    @media screen and (max-width: 960px) {
+      width: 100%;
+    }
     .svg {
       margin-left: 4px;
     }
