@@ -16,7 +16,7 @@ const CarPage = ({ match }) => {
   if (loading) return <h2>Loading</h2>;
   if (error) return <h3>Error</h3>;
 
-  const { model, category, price } = data.getCar;
+  const { model, price } = data.getCar;
 
   return (
     <CarPageStyled>

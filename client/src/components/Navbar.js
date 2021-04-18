@@ -2,11 +2,11 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Signout from './Auth/Signout';
 import { AiOutlineCar } from 'react-icons/ai';
-import './Navbar.css';
+import styled from 'styled-components';
 
 const Navbar = ({ session }) => {
   return (
-    <nav className='navbar'>
+    <NavbarStyled>
       <div className='nav-container'>
         <NavLink exact to='/' className='nav-logo'>
           Easy Car <AiOutlineCar />
@@ -17,7 +17,7 @@ const Navbar = ({ session }) => {
           <NavbarUnAuth />
         )}
       </div>
-    </nav>
+    </NavbarStyled>
   );
 };
 
@@ -72,5 +72,55 @@ const NavbarUnAuth = () => (
     </li>
   </ul>
 );
+
+const NavbarStyled = styled.nav`
+  background-color: #000;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+    max-width: 1500px;
+    .nav-logo {
+      color: #fff;
+      align-items: left;
+      margin-left: 20px;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 2rem;
+      flex-grow: 1;
+      &:hover {
+        text-decoration: none;
+        color: #fff;
+      }
+    }
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      text-align: center;
+      margin-right: 2rem;
+      .nav-links {
+        color: #fff;
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        height: 100%;
+        border-bottom: 3px solid transparent;
+        &:hover {
+          text-decoration: none;
+          color: #fff;
+        }
+      }
+    }
+  }
+`;
 
 export default Navbar;

@@ -2,11 +2,12 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_ALL_CARS } from '../../queries';
 // import SingleCar from './SingleCar';
-import './AllCars.scss';
+// import './AllCars.scss';
 
 import { withRouter } from 'react-router-dom';
 
 import pickUp from '../assets/eJfSKUCGFS.jpg';
+import styled from 'styled-components';
 
 const AllCars = ({ history }) => {
   const { data, error, loading } = useQuery(GET_ALL_CARS);
@@ -32,7 +33,7 @@ const AllCars = ({ history }) => {
         //   <SingleCar {...car} />
         // </ul>
 
-        <div className='card' key={_id}>
+        <AllCarsStyled key={_id}>
           <div
             className='card-img'
             onClick={() => history.push(`/cars/${_id}`)}
@@ -45,16 +46,109 @@ const AllCars = ({ history }) => {
             <p className='price'>${price}</p>
           </div>
           <div className='btn'>Book now</div>
-        </div>
+        </AllCarsStyled>
       );
     },
   );
   return (
-    <div className='main_content'>
+    <MainCarStyled>
       <h3>All Cars</h3>
       {allCars}
-    </div>
+    </MainCarStyled>
   );
 };
+
+const MainCarStyled = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 50px auto;
+  padding: 50px 0 0;
+  box-sizing: border-box;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  h3 {
+    position: absolute;
+    left: 41%;
+    top: 0;
+    color: #fff;
+    font-size: 3vw;
+  }
+`;
+
+const AllCarsStyled = styled.div`
+  $cta: #fe8033;
+  $bg: #2b3039;
+  $text: #2d343e;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  border-radius: 15px;
+  flex-direction: column;
+  position: relative;
+  transform: scale(0.9);
+  transition: 0.3s ease-in-out;
+  margin-bottom: 50px;
+  &:hover {
+    background-color: rgb(98, 97, 102);
+    transform: scale(1);
+    cursor: pointer;
+    .btn {
+      background-color: rgb(91, 45, 129);
+      color: white;
+    }
+  }
+  .card_img {
+    margin-top: 5vh;
+    img {
+      width: 220px;
+    }
+  }
+  .card_header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #fff;
+    margin: 25px 0;
+    h2 {
+      font-size: 18px;
+    }
+    p {
+      font-size: 14px;
+      text-align: center;
+      color: rgba (#fff, 0.3);
+      margin: 8px 0;
+    }
+    .price {
+      font-size: 15px;
+      color: $cta;
+      vertical-align: top;
+      span {
+        font-size: 25px;
+        display: inline-block;
+      }
+    }
+  }
+  .btn {
+    width: 130px;
+    height: 35px;
+    font-size: 14px;
+    border-radius: 35px;
+    background-color: rgb(147, 128, 219);
+    color: $text;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    margin-bottom: 5px;
+  }
+`;
 
 export default withRouter(AllCars);
