@@ -1,5 +1,4 @@
 import React from 'react';
-// import './Feature.css';
 import { Link } from 'react-router-dom';
 import { FaCar, FaWallet, FaComments, FaPeopleCarry } from 'react-icons/fa';
 import styled from 'styled-components';

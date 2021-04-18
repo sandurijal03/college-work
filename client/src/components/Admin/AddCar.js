@@ -1,11 +1,11 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
+import styled from 'styled-components';
 
 import useForm from '../../lib/useForm';
 import Error from '../../lib/Error';
-import './AddCarStyle.css';
 import { ADD_CAR, GET_ALL_CARS } from '../../queries';
-import { useMutation } from '@apollo/client';
 import withAuth from '../withAuth';
 
 const AddCar = ({ history }) => {
@@ -75,7 +75,7 @@ const AddCar = ({ history }) => {
   };
 
   return (
-    <div className='all'>
+    <AddCarStyled>
       <h2 className='heading'>Add Car</h2>
       <form onSubmit={(e) => handleSubmit(e, addCar)}>
         <div>
@@ -203,9 +203,39 @@ const AddCar = ({ history }) => {
         </div>
       </form>
       {error && <Error error={error} />}
-    </div>
+    </AddCarStyled>
   );
 };
+
+const AddCarStyled = styled.div`
+  background: rgb(156, 145, 145);
+  color: white;
+  .heading {
+    font-size: 50px;
+  }
+  .input {
+    width: 40%;
+    margin: 1%;
+    line-height: 4vh;
+  }
+  .select {
+    width: 20%;
+    margin: 1%;
+    line-height: 4vh;
+  }
+
+  .textarea {
+    width: 30%;
+    line-height: 7vh;
+    margin-top: 1%;
+  }
+
+  .button-primary {
+    width: 10%;
+    line-height: 3vh;
+    margin-top: 1%;
+  }
+`;
 
 export default withAuth(
   (session) => session && session.getCurrentUser.role === 'admin',
