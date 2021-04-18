@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Button.css';
 
 const STYLES = ['btn--primary', 'btn--outline'];
 
@@ -12,7 +11,6 @@ export const Button = ({
   onClick,
   buttonStyle,
   buttonSize,
-  session,
 }) => {
   const checkButtonStyle = STYLES.includes(buttonStyle)
     ? buttonStyle
