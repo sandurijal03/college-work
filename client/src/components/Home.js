@@ -4,7 +4,7 @@ import Cars from './Car/Cars';
 import HeroSection from './HeroSection';
 import Feature from './Feature';
 
-const App = () => {
+const Home = () => {
   return (
     <>
       <HeroSection />
@@ -14,4 +14,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Home;
