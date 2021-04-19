@@ -1,12 +1,9 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { GET_ALL_CARS } from '../../queries';
-// import SingleCar from './SingleCar';
-// import './AllCars.scss';
-
 import { withRouter } from 'react-router-dom';
-
 import styled from 'styled-components';
+
+import { GET_ALL_CARS } from '../../queries';
 
 const AllCars = ({ history }) => {
   const { data, error, loading } = useQuery(GET_ALL_CARS);
@@ -25,13 +22,7 @@ const AllCars = ({ history }) => {
       description,
       price,
     }) => {
-      // const car = { objectId, brand, _id, model, imageUrl, category };
-
       return (
-        // <ul key={_id} className='all-cars'>
-        //   <SingleCar {...car} />
-        // </ul>
-
         <AllCarsStyled key={_id}>
           <div
             className='card-img'
