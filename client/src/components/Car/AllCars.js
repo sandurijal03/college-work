@@ -11,6 +11,8 @@ const AllCars = ({ history }) => {
   if (loading) return <h4>Loading</h4>;
   if (error) return <h4>Error</h4>;
 
+  console.log(data);
+
   const allCars = data.getAllCars.map(
     ({
       objectId,
@@ -21,6 +23,7 @@ const AllCars = ({ history }) => {
       category,
       description,
       price,
+      isAvailable,
     }) => {
       return (
         <AllCarsStyled key={_id}>
@@ -28,18 +31,14 @@ const AllCars = ({ history }) => {
             className='card-img'
             onClick={() => history.push(`/cars/${_id}`)}
           >
-            <img
-              src={`images/${objectId}.jpg`}
-              alt=''
-              style={{ width: '200px' }}
-            />
+            <img src={`images/${objectId}.jpg`} alt='' width='500px' />
           </div>
           <div className='card-header'>
             <h2>{model}</h2>
             <p>{description}</p>
             <p className='price'>${price}</p>
           </div>
-          <div className='btn'>Book now</div>
+          {isAvailable && <div className='btn'>Book now</div>}
         </AllCarsStyled>
       );
     },
@@ -99,6 +98,8 @@ const AllCarsStyled = styled.div`
   }
   .card_img {
     margin-top: 5vh;
+    width: 200px;
+    text-align: center;
     img {
       width: 220px;
     }

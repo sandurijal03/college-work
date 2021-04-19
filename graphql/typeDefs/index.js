@@ -6,8 +6,8 @@ exports.typeDefs = `
     imageUrl: String
     category: String!
     description: String
-    ac: String!
-    isAvailable: String!
+    ac: Boolean
+    isAvailable: Boolean
     seat: Int!
     price: Int!
     age: Int!
@@ -39,6 +39,23 @@ exports.typeDefs = `
   type Token {
     token: String!
   }
+
+
+  input CarInput {
+    _id: ID
+    brand: String
+    model: String
+    imageUrl: String
+    category: String
+    description: String
+    ac: Boolean
+    isAvailable: Boolean
+    seat: Int
+    price: Int
+    age: Int
+    objectId:String
+  }
+
 
 
 

@@ -40,6 +40,10 @@ const CarItemStyled = styled.div`
     flex: 1;
     margin: 0 1rem;
     border-radius: 10px;
+    @media only screen and (max-width: 1024px) {
+      margin-bottom: 2rem;
+    }
+
     .cards__item__link {
       display: flex;
       flex-flow: column;

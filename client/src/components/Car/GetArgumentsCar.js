@@ -30,9 +30,10 @@ const GetArgumentsCar = ({ match, history }) => {
                   onClick={() => history.push(`/cars/${_id}`)}
                 >
                   <img
-                    src={`images/${objectId}.jpg`}
+                    src={`/images/${objectId}.jpg`}
                     alt=''
                     className='img-fluid w-50'
+                    height='60vh'
                   />
                   <h1>{model}</h1>
                 </div>
@@ -46,8 +47,10 @@ const GetArgumentsCar = ({ match, history }) => {
 };
 
 const GetArgumentsCarStyled = styled.section`
-  display: grid;
+  display: flex;
+  flex-direction: column;
   grid-template-columns: repeat(3, 1fr);
+  flex-wrap: nowrap;
 `;
 
 export default withRouter(GetArgumentsCar);

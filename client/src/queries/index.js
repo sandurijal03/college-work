@@ -36,14 +36,17 @@ export const GET_CAR = gql`
   query($_id: ID!) {
     getCar(_id: $_id) {
       _id
-      objectId
       brand
+      objectId
       model
       imageUrl
+      category
       description
       ac
       isAvailable
+      seat
       price
+      age
     }
   }
 `;

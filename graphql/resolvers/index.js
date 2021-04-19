@@ -13,12 +13,20 @@ const createToken = (user, secret, expiresIn) => {
 exports.resolvers = {
   Query: {
     getAllCars: async (parent, args, { Car }, info) => {
-      const allCars = await Car.find().sort({ createdAt: 'desc' });
-      return allCars;
+      try {
+        const allCars = await Car.find().sort({ createdAt: 'desc' });
+        return allCars;
+      } catch (err) {
+        throw new Error(err.message);
+      }
     },
     getCar: async (parent, { _id }, { Car }, info) => {
-      const car = await Car.findById({ _id });
-      return car;
+      try {
+        const car = await Car.findById(_id);
+        return car;
+      } catch (err) {
+        throw new Error(err.message);
+      }
     },
     getUserCar: async (parent, { email }, { Car }, info) => {
       const userCars = await Car.find({ email }).sort({
