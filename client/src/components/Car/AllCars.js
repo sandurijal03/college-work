@@ -6,7 +6,6 @@ import { GET_ALL_CARS } from '../../queries';
 
 import { withRouter } from 'react-router-dom';
 
-import pickUp from '../assets/eJfSKUCGFS.jpg';
 import styled from 'styled-components';
 
 const AllCars = ({ history }) => {
@@ -38,7 +37,11 @@ const AllCars = ({ history }) => {
             className='card-img'
             onClick={() => history.push(`/cars/${_id}`)}
           >
-            <img src={pickUp} alt='' style={{ width: '200px' }} />
+            <img
+              src={`images/${objectId}.jpg`}
+              alt=''
+              style={{ width: '200px' }}
+            />
           </div>
           <div className='card-header'>
             <h2>{model}</h2>

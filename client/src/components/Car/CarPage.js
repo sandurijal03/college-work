@@ -16,16 +16,14 @@ const CarPage = ({ match }) => {
   if (loading) return <h2>Loading</h2>;
   if (error) return <h3>Error</h3>;
 
-  const { model, price } = data.getCar;
+  const { model, price, objectId, description } = data.getCar;
+
+  console.log(objectId);
 
   return (
     <CarPageStyled>
       <div className='imgbox'>
-        <img
-          src='https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/2020-lamborghini-aventador-svj-roadster-drive-107-1576871367.jpg?crop=0.825xw:0.620xh;0.138xw,0.329xh&resize=1200:*'
-          alt='img'
-          className='image'
-        />
+        <img src={`images/${objectId}.jpg`} alt='' className='image' />
       </div>
       <div className='content'>
         <h3 className='model'>{model}</h3>

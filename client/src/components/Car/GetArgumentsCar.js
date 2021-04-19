@@ -2,6 +2,7 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_ARGUMENT_CARS } from '../../queries';
 import { withRouter } from 'react-router-dom';
+import styled from 'styled-components';
 
 const GetArgumentsCar = ({ match, history }) => {
   const { category } = match.params;
@@ -14,7 +15,7 @@ const GetArgumentsCar = ({ match, history }) => {
 
   return data.getArgumentCars.map(
     ({ objectId, _id, model, brand, category }) => (
-      <section id='store' className='store py-5' style={{ background: 'grey' }}>
+      <GetArgumentsCarStyled key={_id}>
         <div className='container'>
           <div className='row store-items'>
             <div className='col-10 col-sm-6 col-lg-6 mx-auto my-3 store-item cars'>
@@ -29,8 +30,8 @@ const GetArgumentsCar = ({ match, history }) => {
                   onClick={() => history.push(`/cars/${_id}`)}
                 >
                   <img
-                    src={`../../assets/${objectId}.jpg`}
-                    alt='cars'
+                    src={`images/${objectId}.jpg`}
+                    alt=''
                     className='img-fluid w-50'
                   />
                   <h1>{model}</h1>
@@ -39,9 +40,14 @@ const GetArgumentsCar = ({ match, history }) => {
             </div>
           </div>
         </div>
-      </section>
+      </GetArgumentsCarStyled>
     ),
   );
 };
+
+const GetArgumentsCarStyled = styled.section`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+`;
 
 export default withRouter(GetArgumentsCar);

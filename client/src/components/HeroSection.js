@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaPlayCircle } from 'react-icons/fa';
 import styled from 'styled-components';
-import homeImg from './assets/img-home.jpg';
+// import homeImg from '/assets/img-home.jpg';
 
 import { Button } from './Button';
 
@@ -25,7 +25,7 @@ const HeroSection = () => {
 };
 
 const HeroSectionStyled = styled.div`
-  background: url(${homeImg}) center center/cover no-repeat;
+  background: url('images/img-home.jpg') center center/cover no-repeat;
   height: 92vh;
   width: 100%;
   display: flex;
