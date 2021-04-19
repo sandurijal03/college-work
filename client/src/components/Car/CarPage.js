@@ -1,10 +1,9 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
+import styled from 'styled-components';
 
 import { GET_CAR } from '../../queries';
-
-import styled from 'styled-components';
 
 const CarPage = ({ match }) => {
   const { _id } = match.params;
