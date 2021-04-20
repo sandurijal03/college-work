@@ -25,7 +25,7 @@ const HeroSection = () => {
 };
 
 const HeroSectionStyled = styled.div`
-  background: url('images/img-home.jpg') center center/cover no-repeat;
+  /* background: url('images/img-home.jpg') center center/cover no-repeat; */
   height: 92vh;
   width: 100%;
   display: flex;
@@ -34,6 +34,14 @@ const HeroSectionStyled = styled.div`
   align-items: center;
   box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
   object-fit: cover;
+  video {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: -1;
+  }
+
   .heading {
     color: #fff;
     font-size: 100px;

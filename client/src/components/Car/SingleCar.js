@@ -4,11 +4,8 @@ import './AllCars.css';
 
 const SingleCar = ({ objectId, brand, model, _id, imageUrl, category }) => {
   return (
-    <li
-      style={{ background: `url(${imageUrl}) center cover no-repeat` }}
-      className='car-list'
-    >
-      <img src={`${objectId}.jpg`} alt='car' />
+    <li className='car-list'>
+      <img src={`${objectId}.jpg`} alt='car' width='500px' />
       <span className={category}>{category}</span>
       <div className='card-text'>
         <Link to={`cars/${_id}`}>

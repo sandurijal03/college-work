@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ApolloConsumer } from '@apollo/client';
+
 import { SEARCH_CAR } from '../../queries';
 import SearchItem from './SearchItem';
 
