@@ -6,12 +6,13 @@ exports.typeDefs = `
     imageUrl: String
     category: String!
     description: String
-    ac: Boolean
-    isAvailable: Boolean
+    ac: String
+    isAvailable: String
     seat: Int!
     price: Int!
     age: Int!
     objectId:String
+    rating:Int!
   }
 
   type User {
@@ -64,6 +65,9 @@ exports.typeDefs = `
 
     addCar(brand: String!, model: String!,category: String!, description: String, ac: String!, isAvailable: String!,seat: Int!,price: Int!, age: Int!, imageUrl:String, objectId: String): Car!
     
+    rateCar(_id:ID!, email:String) : Car
+    
+
     likeCar(_id:ID!, email:String) : Car
     
     unlikeCar(_id:  ID!, email:String): Car

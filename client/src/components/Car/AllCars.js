@@ -41,9 +41,7 @@ const AllCars = ({ history }) => {
               onClick={() => history.push(`/cars/${_id}`)}
             >
               <img
-                src={
-                  objectId.length !== 0 ? `/images/${objectId}.jpg` : imageUrl
-                }
+                src={!objectId ? imageUrl : `/images/${objectId}.jpg`}
                 alt=''
                 width='500px'
               />

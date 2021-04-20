@@ -32,8 +32,6 @@ const useStyle = makeStyles((theme) => ({
 
 const AddCar = ({ history }) => {
   const classes = useStyle();
-  const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.down('xs'));
 
   const { inputs, handleChange, clearForm } = useForm({
     brand: '',
@@ -95,6 +93,7 @@ const AddCar = ({ history }) => {
   const handleSubmit = (e, addCar) => {
     e.preventDefault();
     addCar().then((data) => {
+      console.log(data);
       clearForm();
       history.push('/');
     });
@@ -103,7 +102,7 @@ const AddCar = ({ history }) => {
   return (
     <AddCarStyled>
       <h2>Add Car</h2>
-      <form className={classes.root} onSubmit={(e) => handleSubmit(e, addCar)}>
+      <form className={classes.root}>
         <Grid container>
           <Grid item lg={6} md={6} sm={6} xs={12}>
             <TextField
@@ -158,9 +157,7 @@ const AddCar = ({ history }) => {
               onChange={handleChange}
             />
             <FormControl className={classes.formControl}>
-              <InputLabel id='demo-simple-select-label'>
-                Select Car Availability
-              </InputLabel>
+              <InputLabel id='demo-simple-select-label'>Category</InputLabel>
               <Select
                 variant='outlined'
                 labelId='demo-simple-select-label'
@@ -188,9 +185,10 @@ const AddCar = ({ history }) => {
                 name='isAvailable'
                 onChange={handleChange}
                 value={isAvailable}
+                type='string'
               >
-                <MenuItem value={1}>Yes</MenuItem>
-                <MenuItem value={0}>No</MenuItem>
+                <MenuItem value={'1'}>Yes</MenuItem>
+                <MenuItem value={'0'}>No</MenuItem>
               </Select>
             </FormControl>
             <FormControl className={classes.formControl}>
@@ -199,14 +197,15 @@ const AddCar = ({ history }) => {
               </InputLabel>
               <Select
                 variant='outlined'
+                type='string'
                 labelId='demo-simple-select-label'
                 id='demo-simple-select'
                 name='ac'
                 onChange={handleChange}
                 value={ac}
               >
-                <MenuItem value={1}>Yes</MenuItem>
-                <MenuItem value={0}>No</MenuItem>
+                <MenuItem value={'1'}>Yes</MenuItem>
+                <MenuItem value={'0'}>No</MenuItem>
               </Select>
             </FormControl>
             <TextField
@@ -226,6 +225,7 @@ const AddCar = ({ history }) => {
         className='btn'
         type='submit'
         disabled={loading || validateForm()}
+        onClick={(e) => handleSubmit(e, addCar)}
       >
         Add Car
       </button>

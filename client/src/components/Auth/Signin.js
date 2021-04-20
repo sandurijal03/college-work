@@ -1,6 +1,7 @@
 import React from 'react';
 import { useMutation } from '@apollo/client';
 import { withRouter, Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import {
   Avatar,
@@ -44,6 +45,8 @@ const Signin = ({ history, refetch }) => {
     e.preventDefault();
     signinUser().then(async ({ data }) => {
       localStorage.setItem('token', data.signinUser.token);
+      toast.success('Logged in succesfully.');
+
       await refetch();
       clearForm();
       history.push('/');

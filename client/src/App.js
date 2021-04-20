@@ -1,5 +1,7 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Home from './components/Home';
 import Search from './components/Car/Search';
@@ -17,6 +19,8 @@ const App = ({ refetch, session }) => {
   return (
     <>
       <Navbar session={session} />
+      <ToastContainer position='top-center' />
+
       <Switch>
         <Route exact path='/' component={Home} />
         <Route exact path='/search' component={Search} />

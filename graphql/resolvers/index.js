@@ -2,6 +2,8 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const { createWriteStream } = require('fs');
 const { join, parse } = require('path');
+const { ApolloError, UserInputError } = require('apollo-server-errors');
+const { signinValidator, signupValidator } = require('../../utils/validator');
 
 const createToken = (user, secret, expiresIn) => {
   const { email, firstName, lastName, age, phone } = user;
@@ -121,6 +123,7 @@ exports.resolvers = {
       );
       return car;
     },
+    rateCar: async (parent, { _id, email }, { Car, User }, info) => {},
     unlikeCar: async (parent, { _id, email }, { Car, User }, info) => {
       const car = await Car.findOneAndUpdate(
         {
@@ -145,15 +148,24 @@ exports.resolvers = {
       return car;
     },
     signinUser: async (parent, { email, password }, { User }, info) => {
-      const user = await User.findOne({ email });
-      if (!user) {
-        throw new Error('User noot found');
+      const { errors, valid } = signinValidator(email, password);
+      if (!valid) {
+        throw new UserInputError(Object.values(errors)[0], { errors });
       }
-      const isValidPassword = await bcrypt.compare(password, user.password);
-      if (!isValidPassword) {
-        throw new Error('Invalid Password');
+
+      try {
+        const user = await User.findOne({ email });
+        if (!user) {
+          throw new UserInputError('User not found');
+        }
+        const isValidPassword = await bcrypt.compare(password, user.password);
+        if (!isValidPassword) {
+          throw new UserInputError('Invalid Password');
+        }
+        return { token: createToken(user, process.env.SECRET, '1d') };
+      } catch (err) {
+        throw new ApolloError(err.message, '400');
       }
-      return { token: createToken(user, process.env.SECRET, '1d') };
     },
 
     signupUser: async (
@@ -162,19 +174,33 @@ exports.resolvers = {
       { User },
       info,
     ) => {
-      const user = await User.findOne({ email });
-      if (user) {
-        throw new Error('User already exists');
-      }
-      const newUser = await new User({
+      const { errors, valid } = signupValidator(
         firstName,
         lastName,
         email,
         password,
-        phone,
-        age,
-      }).save();
-      return { token: createToken(newUser, process.env.SECRET, '1d') };
+      );
+      if (!valid) {
+        throw new UserInputError(Object.values(errors)[0], { errors });
+      }
+
+      try {
+        const user = await User.findOne({ email });
+        if (user) {
+          throw new UserInputError('Email already exists');
+        }
+        const newUser = await new User({
+          firstName,
+          lastName,
+          email,
+          password,
+          phone,
+          age,
+        }).save();
+        return { token: createToken(newUser, process.env.SECRET, '1d') };
+      } catch (err) {
+        throw new ApolloError(err.message, '400');
+      }
     },
     singleUpload: async (_, { file }) => {
       let { filename, createReadStream } = await file;

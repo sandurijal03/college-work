@@ -29,7 +29,7 @@ const CarPage = ({ match }) => {
     <CarPageStyled>
       <div className='imgbox'>
         <img
-          src={objectId.length !== 0 ? `/images/${objectId}.jpg` : imageUrl}
+          src={!objectId ? imageUrl : `/images/${objectId}.jpg`}
           alt=''
           className='image'
         />

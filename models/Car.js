@@ -54,6 +54,10 @@ const carSchema = new Schema(
       type: Date,
       default: Date.now(),
     },
+    rating: {
+      type: Number,
+      default: 2,
+    },
   },
   {
     timestamps: true,
