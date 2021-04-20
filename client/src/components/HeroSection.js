@@ -25,7 +25,7 @@ const HeroSection = () => {
 };
 
 const HeroSectionStyled = styled.div`
-  /* background: url('images/img-home.jpg') center center/cover no-repeat; */
+  background: url('images/img-home.jpg') center center/cover no-repeat;
   height: 92vh;
   width: 100%;
   display: flex;

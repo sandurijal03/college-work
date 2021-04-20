@@ -28,9 +28,11 @@ const AllCars = ({ history }) => {
         model,
         imageUrl,
         category,
+        ac,
         description,
         price,
         isAvailable,
+        seat,
       }) => {
         return (
           <AllCarsStyled key={_id}>
@@ -38,12 +40,29 @@ const AllCars = ({ history }) => {
               className='card-img'
               onClick={() => history.push(`/cars/${_id}`)}
             >
-              <img src={`images/${objectId}.jpg`} alt='' width='500px' />
+              <img
+                src={
+                  objectId.length !== 0 ? `/images/${objectId}.jpg` : imageUrl
+                }
+                alt=''
+                width='500px'
+              />
             </div>
             <div className='card-header'>
               <h2>{model}</h2>
               <p>{description}</p>
-              <p className='price'>${price}</p>
+
+              <p>
+                <span>ac: </span>
+                {ac.toString()}
+              </p>
+              <p>
+                <span>seat: </span>
+                {seat}
+              </p>
+              <p className='price'>
+                <span>price: </span>${price}
+              </p>
             </div>
             {isAvailable && <div className='btn'>Book now</div>}
           </AllCarsStyled>
@@ -56,6 +75,26 @@ const AllCars = ({ history }) => {
 
   return (
     <>
+      <div style={{ textAlign: 'center' }}>
+        {allButtons.map((item) => (
+          <button
+            style={{
+              padding: '10px',
+              textAlign: 'center',
+              width: '10rem',
+              font: 'inherit',
+              fontSize: '20px',
+              marginRight: '10px',
+              borderRadius: '10px',
+              backgroundColor: 'blue',
+              color: 'white',
+              outline: 'none',
+            }}
+          >
+            {item}
+          </button>
+        ))}
+      </div>
       <MainCarStyled>
         <h3>All Cars</h3>
         {allCars}
@@ -64,7 +103,7 @@ const AllCars = ({ history }) => {
   );
 };
 
-const MainCarStyled = styled.div`
+export const MainCarStyled = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -111,10 +150,10 @@ const AllCarsStyled = styled.div`
   }
   .card_img {
     margin-top: 5vh;
-    width: 200px;
+    width: 100%;
     text-align: center;
     img {
-      width: 220px;
+      width: 100%;
     }
   }
   .card_header {

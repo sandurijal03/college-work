@@ -22,12 +22,17 @@ export const GET_ALL_CARS = gql`
 export const GET_ARGUMENT_CARS = gql`
   query($category: String!) {
     getArgumentCars(category: $category) {
+      objectId
       _id
       brand
       model
       imageUrl
       category
-      objectId
+      description
+      ac
+      isAvailable
+      seat
+      price
     }
   }
 `;

@@ -12,7 +12,7 @@ const Cars = (props) => {
         <div className='cards__wrapper'>
           <ul className='cards__items'>
             <CarItem
-              src='images/T3bdc4539U.png'
+              src='images/T3bdc4539U.jpg'
               text='Set Sail in the Atlantic Ocean visiting Uncharted Waters'
               label='sedan'
               path={`/sedan/cars`}

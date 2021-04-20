@@ -22,14 +22,17 @@ const CarPage = ({ match }) => {
     brand,
     isAvailable,
     description,
+    imageUrl,
   } = data.getCar;
-
-  console.log(objectId);
 
   return (
     <CarPageStyled>
       <div className='imgbox'>
-        <img src={`/images/${objectId}.jpg`} alt='' />
+        <img
+          src={objectId.length !== 0 ? `/images/${objectId}.jpg` : imageUrl}
+          alt=''
+          className='image'
+        />
       </div>
       <div className='content'>
         <h3 className='model'>{model}</h3>
