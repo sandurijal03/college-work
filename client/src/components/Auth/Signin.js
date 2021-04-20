@@ -113,8 +113,8 @@ const Signin = ({ history, refetch }) => {
               </Link>
             </Grid>
           </Grid>
-          {error && <Error message={error.message} />}
         </form>
+        {error && <Error message={error.message} />}
       </div>
       <Box mt={8}>
         <Copyright />

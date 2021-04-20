@@ -7,7 +7,7 @@ exports.typeDefs = `
     category: String!
     description: String
     ac: String
-    isAvailable: String
+    isAvailable: Boolean
     seat: Int!
     price: Int!
     age: Int!

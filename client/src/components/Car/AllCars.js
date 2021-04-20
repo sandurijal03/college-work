@@ -57,14 +57,13 @@ const AllCars = ({ history }) => {
       },
     );
 
-  const all = () => {
-    setMenuItems(AllCars);
-  };
-
   const filter = (button) => {
+    if (button === 'All') {
+      setMenuItems(AllCars);
+      return;
+    }
     const filteredData = AllCars.filter((item) => item.category === button);
     setMenuItems(filteredData);
-    return;
   };
 
   if (loading) return <h4>Loading</h4>;
@@ -73,7 +72,7 @@ const AllCars = ({ history }) => {
   return (
     <MainCarStyled>
       <div className='buttons'>
-        <button className='filter ' onClick={all}>
+        <button className='filter ' onClick={() => filter('All')}>
           All
         </button>
         <button className='filter ' onClick={() => filter('sedan')}>
@@ -104,12 +103,16 @@ const AllCars = ({ history }) => {
 };
 
 export const MainCarStyled = styled.div`
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
   flex-wrap: wrap;
   img {
     height: 20em;
-    width: 20em;
+    width: 100%;
+  }
+  .content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
   }
   .card {
     margin: 1em 0 1em 2em;
@@ -124,6 +127,7 @@ export const MainCarStyled = styled.div`
   }
   .heading {
     text-align: center;
+    display: block;
     font-size: 2em;
   }
   .btn {

@@ -19,6 +19,46 @@ export const GET_ALL_CARS = gql`
   }
 `;
 
+export const LIKE_CAR = gql`
+  mutation($_id: ID!, $email: String!) {
+    likeCar(_id: $_id, email: $email) {
+      _id
+      brand
+      model
+      imageUrl
+      category
+      description
+      ac
+      isAvailable
+      seat
+      price
+      age
+      objectId
+      rating
+    }
+  }
+`;
+
+export const UNLIKE_CAR = gql`
+  mutation($_id: ID!, $email: String!) {
+    unlikeCar(_id: $_id, email: $email) {
+      _id
+      brand
+      model
+      imageUrl
+      category
+      description
+      ac
+      isAvailable
+      seat
+      price
+      age
+      objectId
+      rating
+    }
+  }
+`;
+
 export const GET_RECOMMENDATION = gql`
   query($firstName: String) {
     getRecommendation(firstName: $firstName)

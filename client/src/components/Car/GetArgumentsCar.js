@@ -2,7 +2,7 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_ARGUMENT_CARS } from '../../queries';
 import { withRouter } from 'react-router-dom';
-import styled from 'styled-components';
+import { Box } from '@material-ui/core';
 
 import { MainCarStyled } from './AllCars';
 
@@ -15,7 +15,7 @@ const GetArgumentsCar = ({ match, history }) => {
   if (loading) return <h1>Loading</h1>;
   if (error) return <h4>Error</h4>;
 
-  return data.getArgumentCars.map(
+  const argumentedCars = data.getArgumentCars.map(
     ({
       objectId,
       _id,
@@ -27,111 +27,54 @@ const GetArgumentsCar = ({ match, history }) => {
       seat,
       isAvailable,
       price,
-    }) => (
-      <MainCarStyled key={_id}>
-        <GetArgumentsCarStyled key={_id}>
-          <div
-            className='card-img'
-            onClick={() => history.push(`/cars/${_id}`)}
-          >
-            <img src={`/images/${objectId}.jpg`} alt='' width='500px' />
-          </div>
-          <div className='card-header'>
-            <h2>{model}</h2>
-            <p>{description}</p>
+      imageUrl,
+    }) => {
+      return (
+        <Box p={1} m={1} key={_id}>
+          <Box className='card' key={_id}>
+            <Box
+              p={3}
+              className='card_img'
+              onClick={() => history.push(`/cars/${_id}`)}
+            >
+              <img
+                src={!objectId ? imageUrl : `/images/${objectId}.jpg`}
+                alt='all cars'
+                width='500px'
+              />
+            </Box>
+            <Box className='card_header'>
+              <h2>{model}</h2>
+              <p>{description}</p>
 
-            <p>
-              <span>ac: </span>
-              {ac.toString()}
-            </p>
-            <p>
-              <span>seat: </span>
-              {seat}
-            </p>
-            <p className='price'>
-              <span>price: </span>${price}
-            </p>
-          </div>
-          {isAvailable && <div className='btn'>Book now</div>}
-        </GetArgumentsCarStyled>
-      </MainCarStyled>
-    ),
+              <p>
+                <span>ac: </span>
+                {ac.toString()}
+              </p>
+              <p>
+                <span>seat: </span>
+                {seat}
+              </p>
+
+              <p className='price'>
+                Rs.
+                <span>{price}</span>
+              </p>
+            </Box>
+            {isAvailable && <button className='btn'>Book Now</button>}
+          </Box>
+        </Box>
+      );
+    },
+  );
+  return (
+    <MainCarStyled>
+      <div className='heading'>
+        <h3> Cars</h3>
+      </div>
+      <div className='content'>{argumentedCars}</div>
+    </MainCarStyled>
   );
 };
-
-const GetArgumentsCarStyled = styled.section`
-  $cta: #fe8033;
-  $bg: #2b3039;
-  $text: #2d343e;
-
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  align-items: center;
-  width: 30%;
-  border-radius: 15px;
-  flex-direction: column;
-  position: relative;
-  transform: scale(0.9);
-  transition: 0.3s ease-in-out;
-  margin-bottom: 50px;
-  &:hover {
-    background-color: rgb(98, 97, 102);
-    transform: scale(1);
-    cursor: pointer;
-    .btn {
-      background-color: rgb(91, 45, 129);
-      color: white;
-    }
-  }
-  .card_img {
-    margin-top: 5vh;
-    width: 100%;
-    text-align: center;
-    img {
-      width: 100%;
-    }
-  }
-  .card_header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    color: #fff;
-    margin: 25px 0;
-    h2 {
-      font-size: 18px;
-    }
-    p {
-      font-size: 14px;
-      text-align: center;
-      color: rgba (#fff, 0.3);
-      margin: 8px 0;
-    }
-    .price {
-      font-size: 15px;
-      color: $cta;
-      vertical-align: top;
-      span {
-        font-size: 25px;
-        display: inline-block;
-      }
-    }
-  }
-  .btn {
-    width: 130px;
-    height: 35px;
-    font-size: 14px;
-    border-radius: 35px;
-    background-color: rgb(147, 128, 219);
-    color: $text;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    position: relative;
-    margin-bottom: 5px;
-  }
-`;
 
 export default withRouter(GetArgumentsCar);

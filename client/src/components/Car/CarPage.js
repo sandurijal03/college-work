@@ -4,6 +4,8 @@ import { useQuery } from '@apollo/client';
 import styled from 'styled-components';
 
 import { GET_CAR } from '../../queries';
+import Error from '../../lib/Error';
+import LikeCar from './LikeCar';
 
 const CarPage = ({ match }) => {
   const { _id } = match.params;
@@ -13,7 +15,6 @@ const CarPage = ({ match }) => {
   });
 
   if (loading) return <h2>Loading</h2>;
-  if (error) return <h3>Error</h3>;
 
   const {
     model,
@@ -40,12 +41,14 @@ const CarPage = ({ match }) => {
         <p className='price'>Price: ${price}</p>
         <p className='description'>{description}</p>
         <p>{isAvailable}</p>
-        {Boolean(isAvailable) === true ? (
-          <button className='bookNow'>Book Now</button>
-        ) : (
+        <LikeCar _id={_id} />
+        {Boolean(isAvailable) !== true ? (
           ''
+        ) : (
+          <button className='bookNow'>Book Now</button>
         )}
       </div>
+      {error && <Error error={error} />}
     </CarPageStyled>
   );
 };
