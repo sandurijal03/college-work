@@ -19,6 +19,12 @@ export const GET_ALL_CARS = gql`
   }
 `;
 
+export const GET_RECOMMENDATION = gql`
+  query($firstName: String) {
+    getRecommendation(firstName: $firstName)
+  }
+`;
+
 export const GET_ARGUMENT_CARS = gql`
   query($category: String!) {
     getArgumentCars(category: $category) {

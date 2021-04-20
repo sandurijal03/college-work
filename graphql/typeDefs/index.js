@@ -31,6 +31,9 @@ exports.typeDefs = `
   type Query {
     getAllCars: [Car]
     getCar(_id:ID!):Car
+    getRecommendation(firstName:String): [String]
+
+
     searchCar(searchTerm: String): [Car]
     getUserCar(email: String!): [Car]
     getArgumentCars(category: String!): [Car]!

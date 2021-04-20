@@ -4,6 +4,11 @@ const { createWriteStream } = require('fs');
 const { join, parse } = require('path');
 const { ApolloError, UserInputError } = require('apollo-server-errors');
 const { signinValidator, signupValidator } = require('../../utils/validator');
+const {
+  pearsonCorrelation,
+  recommendationEngine,
+} = require('../../utils/algos');
+const dataset = require('../../utils/dataset');
 
 const createToken = (user, secret, expiresIn) => {
   const { email, firstName, lastName, age, phone } = user;
@@ -35,6 +40,14 @@ exports.resolvers = {
         createdDate: 'desc',
       });
       return userCars;
+    },
+    getRecommendation: async (parent, { firstName }) => {
+      const recommendedCars = recommendationEngine(
+        dataset,
+        firstName,
+        pearsonCorrelation,
+      );
+      return recommendedCars[1];
     },
     searchCar: async (parent, { searchTerm }, { Car }, info) => {
       if (searchTerm) {
@@ -137,7 +150,7 @@ exports.resolvers = {
       );
       const user = await User.findOneAndUpdate(
         {
-          username,
+          email,
         },
         { $pull: { favourites: _id } },
       );
