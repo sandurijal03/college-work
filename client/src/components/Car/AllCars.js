@@ -5,49 +5,62 @@ import styled from 'styled-components';
 
 import { GET_ALL_CARS } from '../../queries';
 
+const allButtons = [
+  'All',
+  'sedan',
+  'hatchback',
+  'suv',
+  'convertible',
+  'coupe',
+  'pickup',
+];
+
 const AllCars = ({ history }) => {
   const { data, error, loading } = useQuery(GET_ALL_CARS);
+
+  const allCars =
+    data &&
+    data.getAllCars.map(
+      ({
+        objectId,
+        brand,
+        _id,
+        model,
+        imageUrl,
+        category,
+        description,
+        price,
+        isAvailable,
+      }) => {
+        return (
+          <AllCarsStyled key={_id}>
+            <div
+              className='card-img'
+              onClick={() => history.push(`/cars/${_id}`)}
+            >
+              <img src={`images/${objectId}.jpg`} alt='' width='500px' />
+            </div>
+            <div className='card-header'>
+              <h2>{model}</h2>
+              <p>{description}</p>
+              <p className='price'>${price}</p>
+            </div>
+            {isAvailable && <div className='btn'>Book now</div>}
+          </AllCarsStyled>
+        );
+      },
+    );
 
   if (loading) return <h4>Loading</h4>;
   if (error) return <h4>Error</h4>;
 
-  console.log(data);
-
-  const allCars = data.getAllCars.map(
-    ({
-      objectId,
-      brand,
-      _id,
-      model,
-      imageUrl,
-      category,
-      description,
-      price,
-      isAvailable,
-    }) => {
-      return (
-        <AllCarsStyled key={_id}>
-          <div
-            className='card-img'
-            onClick={() => history.push(`/cars/${_id}`)}
-          >
-            <img src={`images/${objectId}.jpg`} alt='' width='500px' />
-          </div>
-          <div className='card-header'>
-            <h2>{model}</h2>
-            <p>{description}</p>
-            <p className='price'>${price}</p>
-          </div>
-          {isAvailable && <div className='btn'>Book now</div>}
-        </AllCarsStyled>
-      );
-    },
-  );
   return (
-    <MainCarStyled>
-      <h3>All Cars</h3>
-      {allCars}
-    </MainCarStyled>
+    <>
+      <MainCarStyled>
+        <h3>All Cars</h3>
+        {allCars}
+      </MainCarStyled>
+    </>
   );
 };
 
