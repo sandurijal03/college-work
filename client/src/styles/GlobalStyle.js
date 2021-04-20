@@ -41,51 +41,6 @@ const GlobalStyled = createGlobalStyle`
 
 
 
-  .home,
-  .services,
-  .products,
-  .sign-up {
-    display: flex;
-    height: 90vh;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
-  }
-
-  /* .services {
-    background-image: url('/images/img-2.jpg');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    color: #fff;
-    font-size: 100px;
-  }
-
-  .products {
-    background-image: url('/images/img-1.jpg');
-    background-position: center;
-    background-size: fill;
-    background-repeat: no-repeat;
-    color: #fff;
-    font-size: 100px;
-  }
-
-  .sign-up {
-    background-image: url('/images/img-8.jpg');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    color: #fff;
-    font-size: 100px;
-  } */
-
-  input,
-  select,
-  textarea {
-    padding: 0.4em 0.2em;
-    font-size: 1.2rem;
-  }
-
   .active {
     font-weight: bold;
   }
@@ -108,6 +63,7 @@ const GlobalStyled = createGlobalStyle`
     outline: none;
     border: none;
     cursor: pointer;
+    background-color: black;
   }
 
 
@@ -150,11 +106,6 @@ const GlobalStyled = createGlobalStyle`
     color: #242424;
     transition: 250ms;
   }
-
-
-
-
-
 `;
 
 export default GlobalStyled;
