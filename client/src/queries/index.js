@@ -96,6 +96,7 @@ export const GET_CAR = gql`
       ac
       isAvailable
       seat
+      rating
       price
       age
     }

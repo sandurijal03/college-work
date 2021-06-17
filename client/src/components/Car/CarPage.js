@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import { GET_CAR } from '../../queries';
 import Error from '../../lib/Error';
-import LikeCar from './LikeCar';
+import Rating from '../Rating';
 
 const CarPage = ({ match }) => {
   const { _id } = match.params;
@@ -24,6 +24,7 @@ const CarPage = ({ match }) => {
     isAvailable,
     description,
     imageUrl,
+    rating,
   } = data.getCar;
 
   return (
@@ -38,14 +39,17 @@ const CarPage = ({ match }) => {
       <div className='content'>
         <h3 className='model'>{model}</h3>
         <h5 className='brand'>{brand}</h5>
-        <p className='price'>Price: ${price}</p>
+        <p className='price'>Price: NPR {price}</p>
         <p className='description'>{description}</p>
         <p>{isAvailable}</p>
-        <LikeCar _id={_id} />
+
+        <Rating rating={rating} />
         {Boolean(isAvailable) !== true ? (
           ''
         ) : (
-          <button className='bookNow'>Book Now</button>
+          <a href='https://esewa.com.np/#/home' target='__blank'>
+            <button className='bookNow'>Book Now</button>
+          </a>
         )}
       </div>
       {error && <Error error={error} />}

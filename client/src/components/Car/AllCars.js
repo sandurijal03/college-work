@@ -50,7 +50,11 @@ const AllCars = ({ history }) => {
                   <span>{price}</span>
                 </p>
               </Box>
-              {isAvailable && <button className='btn'>Book Now</button>}
+              {isAvailable && (
+                <a href='https://esewa.com.np/#/home' target='__blank'>
+                  <button className='btn'>Book Now</button>
+                </a>
+              )}
             </Box>
           </Box>
         );
@@ -106,6 +110,9 @@ export const MainCarStyled = styled.div`
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   flex-wrap: wrap;
+  :hover {
+    cursor: pointer;
+  }
   img {
     height: 20em;
     width: 100%;

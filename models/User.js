@@ -31,10 +31,13 @@ const userSchema = new Schema(
     age: {
       type: String,
     },
-    favourites: {
-      type: [ObjectId],
-      ref: 'Car',
-    },
+    favourites: [
+      {
+        type: [ObjectId],
+        ref: 'Car',
+      },
+    ],
+
     phone: {
       type: String,
     },

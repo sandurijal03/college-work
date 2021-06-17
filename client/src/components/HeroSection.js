@@ -1,25 +1,11 @@
 import React from 'react';
-import { FaPlayCircle } from 'react-icons/fa';
 import styled from 'styled-components';
-// import homeImg from '/assets/img-home.jpg';
-
-import { Button } from './Button';
 
 const HeroSection = () => {
   return (
     <HeroSectionStyled>
-      {/* <video src='videos/video-1.mp4' autoPlay loop muted /> */}
-      <h1 className='heading'>Adventure awaits</h1>
+      <h1 className='heading'>Adventure Awaits</h1>
       <p className='desc'>What are you waiting for</p>
-      <div className='hero-btns'>
-        <Button
-          className='btn'
-          buttonStyle='btn-primary'
-          buttonSize='btn--large'
-        >
-          WATCH TRAILER <FaPlayCircle />
-        </Button>
-      </div>
     </HeroSectionStyled>
   );
 };

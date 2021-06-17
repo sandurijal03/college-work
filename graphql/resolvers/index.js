@@ -136,7 +136,20 @@ exports.resolvers = {
       );
       return car;
     },
-    rateCar: async (parent, { _id, email }, { Car, User }, info) => {},
+    rateCar: async (parent, { _id, email, rating }, { Car, User }, info) => {
+      const car = await Car.findOneAndUpdate({ _id }, { $push: { rating } });
+      const user = await User.findOneAndUpdate(
+        { email },
+        {
+          $push: {
+            // favourites: _id,
+            rating,
+          },
+        },
+      ).populate('car');
+      console.log(user);
+      return car;
+    },
     unlikeCar: async (parent, { _id, email }, { Car, User }, info) => {
       const car = await Car.findOneAndUpdate(
         {

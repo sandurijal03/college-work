@@ -56,7 +56,7 @@ const carSchema = new Schema(
     },
     rating: {
       type: Number,
-      default: 2,
+      default: 0,
     },
   },
   {

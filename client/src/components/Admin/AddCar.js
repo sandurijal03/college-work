@@ -5,13 +5,11 @@ import styled from 'styled-components';
 import {
   Grid,
   TextField,
-  useMediaQuery,
   FormControl,
   Select,
   MenuItem,
   InputLabel,
   makeStyles,
-  useTheme,
 } from '@material-ui/core';
 
 import useForm from '../../lib/useForm';

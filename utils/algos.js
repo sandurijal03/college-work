@@ -47,28 +47,6 @@ let pearsonCorrelation = function (dataset, p1, p2) {
   }
 };
 
-// similar user
-let similarUser = function (dataset, person, numOfUser, distance) {
-  let scores = [];
-  for (let others in dataset) {
-    if (others != person && typeof dataset[others] != 'function') {
-      let val = distance(dataset, person, others);
-      let p = others;
-      scores.push({ val, p });
-    }
-  }
-
-  scores.sort(function (a, b) {
-    return b.val < a.val ? -1 : b.val > a.val ? 1 : b.val >= a.val ? 0 : NaN;
-  });
-
-  let score = [];
-  for (let i in numOfUser) {
-    score.push(scores[i]);
-  }
-  return score;
-};
-
 // recommendation Engine
 let recommendationEngine = function (dataset, person, distance) {
   let totals = {
