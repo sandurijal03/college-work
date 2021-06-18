@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, useHistory } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import styled from 'styled-components';
 
@@ -9,15 +9,12 @@ import Rating from '../Rating';
 
 const CarPage = ({ match, session }) => {
   const { _id } = match.params;
-  const { email } = session.getCurrentUser;
-
+  const history = useHistory();
   const { data, error, loading } = useQuery(GET_CAR, {
     variables: { _id },
   });
 
   if (loading) return <h2>Loading</h2>;
-
-  console.log(email);
 
   const {
     model,
@@ -29,6 +26,18 @@ const CarPage = ({ match, session }) => {
     imageUrl,
     rating,
   } = data.getCar;
+
+  const handleClick = (e) => {
+    // e.preventdefault();
+
+    return session && session.getCurrentUser ? (
+      <a href='https://esewa.com.np/#/home' target='__blank'>
+        hi
+      </a>
+    ) : (
+      history.push('/signin')
+    );
+  };
 
   return (
     <CarPageStyled>
@@ -45,13 +54,19 @@ const CarPage = ({ match, session }) => {
         <p className='price'>Price: NPR {price}</p>
         <p className='description'>{description}</p>
         <p>{isAvailable}</p>
-        <Rating rating={rating} session={session} _id={_id} />
+
+        {session && session.getCurrentUser ? (
+          <Rating rating={rating} session={session} _id={_id} />
+        ) : (
+          ''
+        )}
+
         {Boolean(isAvailable) !== true ? (
           ''
         ) : (
-          <a href='https://esewa.com.np/#/home' target='__blank'>
-            <button className='bookNow'>Book Now</button>
-          </a>
+          <button className='bookNow' onClick={handleClick}>
+            Book Now
+          </button>
         )}
       </div>
       {error && <Error error={error} />}

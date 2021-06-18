@@ -8,7 +8,6 @@ const {
   pearsonCorrelation,
   recommendationEngine,
 } = require('../../utils/algos');
-const dataset = require('../../utils/dataset');
 
 const createToken = (user, secret, expiresIn) => {
   const { email, firstName, lastName, age, phone } = user;
@@ -41,12 +40,26 @@ exports.resolvers = {
       });
       return userCars;
     },
-    getRecommendation: async (parent, { firstName }) => {
+    getRecommendation: async (parent, { firstName }, { User, Car }, info) => {
+      const users = await User.find().populate('favourites.car');
+      let set = {};
+      for (let i = 0; i < users.length; i++) {
+        let name = users[i].firstName;
+        set[name] = {};
+
+        for (let key of users[i].favourites) {
+          let model = key.car.model;
+          let rating = key.car.rating;
+          set[name][model] = rating;
+        }
+      }
+
       const recommendedCars = recommendationEngine(
-        dataset,
+        set,
         firstName,
         pearsonCorrelation,
       );
+
       return recommendedCars[1];
     },
     searchCar: async (parent, { searchTerm }, { Car }, info) => {
@@ -128,11 +141,7 @@ exports.resolvers = {
         rating: rating,
       };
 
-      console.log('hi', car._id);
-
       const user = await User.findOne({ email });
-
-      console.log(user.favourites.includes(car._id).car);
 
       if (
         user.favourites.length === 0 ||
