@@ -42,7 +42,6 @@ const CarPage = ({ match }) => {
         <p className='price'>Price: NPR {price}</p>
         <p className='description'>{description}</p>
         <p>{isAvailable}</p>
-
         <Rating rating={rating} />
         {Boolean(isAvailable) !== true ? (
           ''

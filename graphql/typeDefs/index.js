@@ -13,7 +13,17 @@ exports.typeDefs = `
     age: Int!
     objectId:String
     rating:Int!
+    email:String
+    likes:Int
   }
+
+  type Favourites {
+    _id:ID
+    car:Car
+    rating:Int
+  }
+
+
 
   type User {
     _id: ID!
@@ -24,7 +34,7 @@ exports.typeDefs = `
     role: String!
     age: Int!
     phone:String
-    favourites: [Car]
+    favourites: [Favourites]!
     createdAt: String
   }
 
@@ -71,9 +81,9 @@ exports.typeDefs = `
     rateCar(_id:ID!, email:String,rating: Int!) : Car
     
 
-    likeCar(_id:ID!, email:String) : Car
+    likeCar(_id:ID, email:String) : Car
     
-    unlikeCar(_id:  ID!, email:String): Car
+    unlikeCar(_id: ID, email:String): Car
 
     deleteUserCar(_id:ID):Car
 

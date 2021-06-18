@@ -20,7 +20,7 @@ export const GET_ALL_CARS = gql`
 `;
 
 export const LIKE_CAR = gql`
-  mutation($_id: ID!, $email: String!) {
+  mutation ($_id: ID, $email: String!) {
     likeCar(_id: $_id, email: $email) {
       _id
       brand
@@ -35,12 +35,13 @@ export const LIKE_CAR = gql`
       age
       objectId
       rating
+      likes
     }
   }
 `;
 
 export const UNLIKE_CAR = gql`
-  mutation($_id: ID!, $email: String!) {
+  mutation ($_id: ID, $email: String!) {
     unlikeCar(_id: $_id, email: $email) {
       _id
       brand
@@ -55,18 +56,19 @@ export const UNLIKE_CAR = gql`
       age
       objectId
       rating
+      likes
     }
   }
 `;
 
 export const GET_RECOMMENDATION = gql`
-  query($firstName: String) {
+  query ($firstName: String) {
     getRecommendation(firstName: $firstName)
   }
 `;
 
 export const GET_ARGUMENT_CARS = gql`
-  query($category: String!) {
+  query ($category: String!) {
     getArgumentCars(category: $category) {
       objectId
       _id
@@ -84,7 +86,7 @@ export const GET_ARGUMENT_CARS = gql`
 `;
 
 export const GET_CAR = gql`
-  query($_id: ID!) {
+  query ($_id: ID!) {
     getCar(_id: $_id) {
       _id
       brand
@@ -104,7 +106,7 @@ export const GET_CAR = gql`
 `;
 
 export const SEARCH_CAR = gql`
-  query($searchTerm: String) {
+  query ($searchTerm: String) {
     searchCar(searchTerm: $searchTerm) {
       _id
       model
@@ -114,7 +116,7 @@ export const SEARCH_CAR = gql`
 
 // car mutation
 export const ADD_CAR = gql`
-  mutation(
+  mutation (
     $brand: String!
     $model: String!
     $category: String!
@@ -166,8 +168,12 @@ export const GET_CURRENT_USER = gql`
       phone
       favourites {
         _id
-        brand
-        model
+        rating
+        car {
+          _id
+          brand
+          model
+        }
       }
     }
   }
@@ -176,7 +182,7 @@ export const GET_CURRENT_USER = gql`
 // Users MUTATION
 
 export const SIGNIN_USER = gql`
-  mutation($email: String!, $password: String!) {
+  mutation ($email: String!, $password: String!) {
     signinUser(email: $email, password: $password) {
       token
     }
@@ -184,7 +190,7 @@ export const SIGNIN_USER = gql`
 `;
 
 export const SIGNUP_USER = gql`
-  mutation(
+  mutation (
     $firstName: String!
     $lastName: String!
     $email: String!

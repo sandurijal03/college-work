@@ -33,11 +33,13 @@ const userSchema = new Schema(
     },
     favourites: [
       {
-        type: [ObjectId],
-        ref: 'Car',
+        car: {
+          type: ObjectId,
+          ref: 'Car',
+        },
+        rating: Number,
       },
     ],
-
     phone: {
       type: String,
     },

@@ -5,6 +5,7 @@ import { AiOutlineCar } from 'react-icons/ai';
 import styled from 'styled-components';
 
 const Navbar = ({ session }) => {
+  console.log(session);
   return (
     <NavbarStyled>
       <div className='nav-container'>

@@ -5,6 +5,7 @@ const UserInfo = ({ session }) => {
   const { firstName, lastName, email, favourites } = session.getCurrentUser;
   let fullName = firstName + ' ' + lastName;
 
+  console.log(favourites);
   return (
     <div>
       <h3>User Info</h3>
@@ -15,13 +16,18 @@ const UserInfo = ({ session }) => {
         {!favourites ? (
           <h2>List is empty</h2>
         ) : (
-          favourites.map((favourite) => (
-            <li key={favourite._id}>
-              <Link to={`/cars/${favourite._id}`}>
-                <p>{favourite.model}</p>
-              </Link>
-            </li>
-          ))
+          favourites.map((favourite) => {
+            return (
+              <li key={favourite._id}>
+                <Link to={`/cars/${favourite.car._id}`}>
+                  <p>
+                    {favourite.car.model}, {favourite.rating}
+                  </p>
+                  <p></p>
+                </Link>
+              </li>
+            );
+          })
         )}
         {!session.getCurrentUser.favourites.length && (
           <p>

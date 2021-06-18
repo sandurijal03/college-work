@@ -73,10 +73,9 @@ exports.resolvers = {
       if (!currentUser) {
         return null;
       }
-      const user = await User.findOne({ email: currentUser.email }).populate({
-        path: 'favourites',
-        model: 'Car',
-      });
+      const user = await User.findOne({ email: currentUser.email }).populate(
+        'favourites.car',
+      );
       return user;
     },
     getArgumentCars: async (parent, { category }, { Car }, info) => {
@@ -122,53 +121,66 @@ exports.resolvers = {
       newCar.save();
       return newCar;
     },
-    likeCar: async (parent, { _id, email }, { Car, User }, info) => {
-      const car = await Car.findOneAndUpdate({ _id }, { $inc: { likes: 1 } });
-      const user = await User.findOneAndUpdate(
-        {
-          email,
-        },
-        {
-          $addToSet: {
-            favourites: _id,
-          },
-        },
-      );
-      return car;
-    },
+    // likeCar: async (parent, { _id, email }, { Car, User }, info) => {
+    //   try {
+    //     const car = await Car.findOneAndUpdate({ _id }, { $inc: { likes: 1 } });
+    //     await User.findOneAndUpdate(
+    //       {
+    //         email,
+    //       },
+    //       {
+    //         $addToSet: {
+    //           favourites: _id,
+    //         },
+    //       },
+    //     );
+    //     return car;
+    //   } catch (err) {
+    //     console.error(err);
+    //   }
+    // },
     rateCar: async (parent, { _id, email, rating }, { Car, User }, info) => {
-      const car = await Car.findOneAndUpdate({ _id }, { $push: { rating } });
+      const car = await Car.findOneAndUpdate({ _id }, { $set: { rating } });
+      let favBody = {
+        car: _id,
+        rating: rating,
+      };
+
       const user = await User.findOneAndUpdate(
         { email },
         {
-          $push: {
-            // favourites: _id,
-            rating,
+          $addToSet: {
+            favourites: favBody,
           },
         },
-      ).populate('car');
-      console.log(user);
+        { new: true, runValidators: true },
+      );
+
       return car;
     },
-    unlikeCar: async (parent, { _id, email }, { Car, User }, info) => {
-      const car = await Car.findOneAndUpdate(
-        {
-          _id,
-        },
-        {
-          $inc: {
-            likes: -1,
-          },
-        },
-      );
-      const user = await User.findOneAndUpdate(
-        {
-          email,
-        },
-        { $pull: { favourites: _id } },
-      );
-      return car;
-    },
+    // unlikeCar: async (parent, { _id, email }, { Car, User }, info) => {
+    //   try {
+    //     const car = await Car.findOneAndUpdate(
+    //       {
+    //         _id,
+    //       },
+    //       {
+    //         $inc: {
+    //           likes: -1,
+    //         },
+    //       },
+    //     );
+    //     const user = await User.findOneAndUpdate(
+    //       {
+    //         email,
+    //       },
+    //       { $pull: { favourites: _id } },
+    //     );
+    //     return car;
+    //   } catch (err) {
+    //     console.error(err);
+    //   }
+    // },
     deleteUserCar: async (parent, { _id }, { Car }, info) => {
       const car = await Car.findOneAndRemove({ _id });
       return car;

@@ -47,7 +47,7 @@ const carSchema = new Schema(
       type: Number,
       default: 0,
     },
-    username: {
+    email: {
       type: String,
     },
     createdDate: {
