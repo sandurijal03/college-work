@@ -43,10 +43,6 @@ const carSchema = new Schema(
     age: {
       type: Number,
     },
-    likes: {
-      type: Number,
-      default: 0,
-    },
     email: {
       type: String,
     },

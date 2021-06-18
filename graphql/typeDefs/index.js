@@ -14,7 +14,6 @@ exports.typeDefs = `
     objectId:String
     rating:Int!
     email:String
-    likes:Int
   }
 
   type Favourites {
@@ -77,18 +76,10 @@ exports.typeDefs = `
     singleUpload(file: Upload!): String!
 
     addCar(brand: String!, model: String!,category: String!, description: String, ac: String!, isAvailable: String!,seat: Int!,price: Int!, age: Int!, imageUrl:String, objectId: String): Car!
-    
     rateCar(_id:ID!, email:String,rating: Int!) : Car
-    
-
-    likeCar(_id:ID, email:String) : Car
-    
-    unlikeCar(_id: ID, email:String): Car
 
     deleteUserCar(_id:ID):Car
-
     signinUser(email: String!, password: String!): Token
-
     signupUser(firstName: String!, lastName: String!, email: String!, password: String!, age: String!, phone: String): Token
   }
 `;

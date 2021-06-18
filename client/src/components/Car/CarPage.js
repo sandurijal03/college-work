@@ -7,14 +7,17 @@ import { GET_CAR } from '../../queries';
 import Error from '../../lib/Error';
 import Rating from '../Rating';
 
-const CarPage = ({ match }) => {
+const CarPage = ({ match, session }) => {
   const { _id } = match.params;
+  const { email } = session.getCurrentUser;
 
   const { data, error, loading } = useQuery(GET_CAR, {
     variables: { _id },
   });
 
   if (loading) return <h2>Loading</h2>;
+
+  console.log(email);
 
   const {
     model,
@@ -42,7 +45,7 @@ const CarPage = ({ match }) => {
         <p className='price'>Price: NPR {price}</p>
         <p className='description'>{description}</p>
         <p>{isAvailable}</p>
-        <Rating rating={rating} />
+        <Rating rating={rating} session={session} _id={_id} />
         {Boolean(isAvailable) !== true ? (
           ''
         ) : (

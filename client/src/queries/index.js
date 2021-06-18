@@ -61,6 +61,17 @@ export const UNLIKE_CAR = gql`
   }
 `;
 
+export const RATECAR = gql`
+  mutation ($_id: ID!, $email: String, $rating: Int!) {
+    rateCar(_id: $_id, email: $email, rating: $rating) {
+      _id
+      brand
+      rating
+      model
+    }
+  }
+`;
+
 export const GET_RECOMMENDATION = gql`
   query ($firstName: String) {
     getRecommendation(firstName: $firstName)
