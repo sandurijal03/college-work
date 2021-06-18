@@ -5,7 +5,6 @@ const UserInfo = ({ session }) => {
   const { firstName, lastName, email, favourites } = session.getCurrentUser;
   let fullName = firstName + ' ' + lastName;
 
-  console.log(favourites);
   return (
     <div>
       <h3>User Info</h3>

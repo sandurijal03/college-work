@@ -32,13 +32,11 @@ const Rating = ({ rating, session, _id }) => {
               name='rating'
               className='input'
               value={ratings}
-              // onClick={() => setRatings(ratingValue)}
               onClick={(e) => {
                 e.preventDefault();
                 rateCar().then((data) => {
                   setRatings(ratingValue);
                   data.data.rateCar.rating = ratings;
-                  console.log('after', data.data.rateCar);
                 });
               }}
             />
