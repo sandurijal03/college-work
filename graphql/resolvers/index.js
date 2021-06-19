@@ -42,20 +42,19 @@ exports.resolvers = {
     },
     getRecommendation: async (parent, { firstName }, { User, Car }, info) => {
       const users = await User.find().populate('favourites.car');
-      let set = {};
+      let dataset = {};
       for (let i = 0; i < users.length; i++) {
         let name = users[i].firstName;
-        set[name] = {};
+        dataset[name] = {};
 
         for (let key of users[i].favourites) {
-          let model = key.car.model;
-          let rating = key.car.rating;
-          set[name][model] = rating;
+          let { model, rating } = key.car;
+          dataset[name][model] = rating;
         }
       }
 
       const recommendedCars = recommendationEngine(
-        set,
+        dataset,
         firstName,
         pearsonCorrelation,
       );

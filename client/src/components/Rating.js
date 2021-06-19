@@ -35,6 +35,7 @@ const Rating = ({ rating, session, _id }) => {
               onClick={(e) => {
                 e.preventDefault();
                 rateCar().then((data) => {
+                  console.log(data);
                   setRatings(ratingValue);
                   data.data.rateCar.rating = ratings;
                 });
